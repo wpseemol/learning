@@ -34,10 +34,9 @@ export default function LoginPage() {
                             </svg>
                         </button>
                         <button
-                            disabled={true}
                             type="submit"
                             name="action"
-                            value="twitter"
+                            value="facebook"
                             aria-label="Log in with Twitter"
                             className="p-3 rounded-sm disabled:text-neutral-700/50 disabled:cursor-not-allowed">
                             <svg
