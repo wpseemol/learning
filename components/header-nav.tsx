@@ -1,6 +1,10 @@
+import { auth } from '@/auth/auth';
 import Link from 'next/link';
+import LogoutBtn from './loguout';
 
-export default function NavBar() {
+export default async function NavBar() {
+    const session = await auth();
+
     return (
         <header className="border-black/15 border-b ">
             <nav className="container mx-auto flex justify-between p-5 items-center">
@@ -13,8 +17,17 @@ export default function NavBar() {
                     <li>
                         <Link href="/">Home</Link>
                     </li>
-                    <li>
-                        <Link href="/login">Login</Link>
+
+                    <li className="flex items-center space-x-1">
+                        {session?.user ? (
+                            <>
+                                <p>{session?.user.name?.split(' ')[0]}</p>
+                                <span>|</span>
+                                <LogoutBtn />
+                            </>
+                        ) : (
+                            <Link href="/login">Login</Link>
+                        )}
                     </li>
                     <li>
                         <Link href="/contact">Contact</Link>
