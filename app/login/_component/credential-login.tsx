@@ -1,8 +1,26 @@
+'use client';
+
+import { doCredentialLogin } from '@/actions';
 import { Credential } from '@/type-define/credential';
+import { FormEvent } from 'react';
 
 export default function CredentialLogin({ variant = 'Login' }: Credential) {
+    async function handelFormSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        try {
+            const formData = new FormData(event.currentTarget);
+
+            const response = await doCredentialLogin(formData);
+
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <form action="" className="space-y-6">
+        <form onSubmit={handelFormSubmit} className="space-y-6">
             {variant === 'Register' && (
                 <>
                     <div className="space-y-1 text-sm">
@@ -37,14 +55,14 @@ export default function CredentialLogin({ variant = 'Login' }: Credential) {
             )}
 
             <div className="space-y-1 text-sm">
-                <label htmlFor="username" className="block dark:text-gray-600">
+                <label htmlFor="user" className="block dark:text-gray-600">
                     Username
                 </label>
                 <input
                     type="text"
-                    name="username"
-                    id="username"
-                    placeholder="Username"
+                    name="user"
+                    id="user"
+                    placeholder="user"
                     className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600 border-violet-500/40 border"
                 />
             </div>
