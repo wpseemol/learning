@@ -4,6 +4,9 @@ interface Credential {
     variant?: Variant;
 }
 //  next user type problem solve
+
+export type { Credential };
+
 declare module 'next-auth' {
     /**
      * Returned by `useSession`, `getSession` and received as a prop on the `Provider` React Context
@@ -20,5 +23,3 @@ declare module 'next-auth' {
         };
     }
 }
-
-export type { Credential };

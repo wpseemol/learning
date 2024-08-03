@@ -19,9 +19,6 @@ export async function middleware(request: NextRequest) {
     const isPublicRoutes = publicUrl.includes(nextUrl.pathname);
     const isAuthRoutes = loginAuth.includes(nextUrl.pathname);
 
-    console.log('is public router:', !isPublicRoutes);
-    console.log('is login:', !isLoggedIn);
-
     if (isApiAuthRoute) {
         return null;
     }

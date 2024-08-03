@@ -3,7 +3,7 @@
 import { doCredentialLogin } from '@/actions';
 import { Toast, ToastProvider } from '@/components/ui/toast';
 import { toast } from '@/components/ui/use-toast';
-import { Credential } from '@/type-define/credential';
+import { Credential } from '@/type/credential';
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 

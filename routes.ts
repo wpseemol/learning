@@ -11,13 +11,7 @@ const publicUrl = ['/', '/contact'];
  * @type {string[]}
  */
 
-const loginAuth = [
-    '/login',
-    '/register',
-    '/api/ahtu/signin',
-    '/api/auth/callback/google',
-    '/api/auth/callback/github',
-];
+const loginAuth = ['/login', '/register', '/login/error'];
 
 /**
  * this route is for next login routes.

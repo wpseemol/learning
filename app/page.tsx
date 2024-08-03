@@ -5,12 +5,14 @@ export default async function HomePage() {
     const session = await auth();
     return (
         <>
-            <p className="">{JSON.stringify(session?.user)}</p>
             <main className="flex min-h-screen flex-col items-center p-24">
                 <h2 className="text-3xl font-semibold">Home page</h2>
                 <HomeUserInfo />
 
                 <h2>{session?.user?.name}</h2>
+                <p className="container text-xl mt-5">
+                    {JSON.stringify(session)}
+                </p>
             </main>
         </>
     );

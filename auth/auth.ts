@@ -21,7 +21,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
         strategy: 'jwt',
     },
+
+    pages: {
+        signIn: '/login',
+        error: '/login/error',
+    },
+
+    events: {
+        async linkAccount({ user }) {
+            await connectMongo();
+            await userSchema.findByIdAndUpdate(user.id, {
+                userName: crypto.randomUUID(),
+                role: 'user',
+            });
+        },
+    },
+
     callbacks: {
+        // async signIn({ user, account }) {
+        //     return true;
+        // },
+
         async session({ session, token }) {
             await connectMongo();
             const user = await userSchema.findById(token?.sub);
@@ -34,6 +54,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return session;
         },
         async jwt({ token, user, account, profile }) {
+            await connectMongo();
+            const response = await userSchema.findById(token?.sub);
+
+            if (response) {
+                token.role = response.role || 'user';
+            } else {
+                token.role = 'user';
+            }
+
             return token;
         },
     },
