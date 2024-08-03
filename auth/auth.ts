@@ -1,3 +1,7 @@
+import { client } from '@/db/client-authjs';
+import connectMongo from '@/db/connect-db';
+import { User } from '@/db/user-shema';
+import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import NextAuth from 'next-auth';
 
 import Credentials from 'next-auth/providers/credentials';
@@ -9,8 +13,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
         strategy: 'jwt',
     },
+    adapter: MongoDBAdapter(client),
     providers: [
         Credentials({
+            name: 'Credentials',
+            type: 'credentials',
+
+            credentials: {
+                user: { label: 'Username', type: 'text' },
+                password: { label: 'Password', type: 'password' },
+            },
             async authorize(
                 credentials: Partial<Record<string, unknown>>,
                 request: Request
@@ -18,19 +30,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 if (!credentials) return null;
 
                 try {
+                    await connectMongo();
+
                     const { user, password } = credentials as {
                         user: string;
                         password: string;
                     };
 
-                    if (user && password) {
-                        return { id: '1', name: user };
+                    const foundUser = await User.findOne({ userName: user });
+
+                    if (foundUser) {
+                        if (foundUser.password === password) {
+                            return foundUser;
+                        } else {
+                            throw new Error('Password does not match');
+                        }
                     } else {
                         throw new Error('User not found');
                     }
                 } catch (error) {
-                    console.error(error);
-                    return null; // Return null if there's an error or credentials are invalid
+                    console.error('Authorization error:', error);
+                    throw new Error('Internal server error');
                 }
             },
         }),

@@ -10,7 +10,7 @@ export async function doSocialLogin(formData: FormData) {
 export async function doCredentialLogin(formData: FormData) {
     try {
         const response = await signIn('credentials', {
-            user: formData.get('email'),
+            user: formData.get('user'),
             password: formData.get('password'),
             redirect: false,
         });
