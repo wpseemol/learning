@@ -32,6 +32,9 @@ export default async function NavBar() {
                         )}
                     </li>
                     <li>
+                        <Link href="/dashboard">Dashboard</Link>
+                    </li>
+                    <li>
                         <Link href="/contact">Contact</Link>
                     </li>
                 </ul>

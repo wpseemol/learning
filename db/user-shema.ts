@@ -12,10 +12,10 @@ interface IUser extends Document {
 // create a Schema corresponding to the document interface
 const userSchema: Schema<IUser> = new Schema({
     name: { type: String, required: true },
-    phone: { type: String, required: true },
-    userName: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, required: true, default: 'user' },
+    phone: { type: String, required: false },
+    userName: { type: String, required: false, unique: true, default: null },
+    password: { type: String, required: false },
+    role: { type: String, required: false, default: 'user' },
 });
 
 const User: Model<IUser> =
