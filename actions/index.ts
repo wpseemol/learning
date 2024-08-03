@@ -1,6 +1,7 @@
 'use server';
 
 import { signIn } from '@/auth/auth';
+import { AuthError } from 'next-auth';
 
 export async function doSocialLogin(formData: FormData) {
     const action = formData.get('action') as string;
@@ -21,11 +22,10 @@ export async function doCredentialLogin(formData: FormData) {
 
         return response;
     } catch (error) {
-        console.error('Error during credential login:', error);
-        if (error instanceof Error) {
-            throw new Error(error.message);
-        } else {
-            throw new Error('An unknown error occurred');
+        if (error instanceof AuthError) {
+            console.log('action wpseemol login error:', error.type);
+            console.log('message:', error.message);
         }
+        throw error;
     }
 }

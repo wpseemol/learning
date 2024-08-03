@@ -4,7 +4,7 @@ import mongoose, { Document, Model, Schema } from 'mongoose';
 interface IUser extends Document {
     name: string;
     phone: string;
-    userName: string;
+    userName?: string;
     password: string;
     role: 'user' | 'creator' | 'admin';
 }
@@ -13,7 +13,12 @@ interface IUser extends Document {
 const userSchema: Schema<IUser> = new Schema({
     name: { type: String, required: true },
     phone: { type: String, required: false },
-    userName: { type: String, required: false, unique: true, default: null },
+    userName: {
+        type: String,
+        required: false,
+        unique: false,
+        default: crypto.randomUUID(),
+    },
     password: { type: String, required: false },
     role: { type: String, required: false, default: 'user' },
 });

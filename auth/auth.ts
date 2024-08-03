@@ -1,8 +1,8 @@
 import { client } from '@/db/client-authjs';
 import connectMongo from '@/db/connect-db';
-import { User } from '@/db/user-shema';
+import { User as userSchema } from '@/db/user-shema';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
-import NextAuth from 'next-auth';
+import NextAuth, { CredentialsSignin } from 'next-auth';
 
 import authConfig from '@/auth/auth.config';
 import Credentials from 'next-auth/providers/credentials';
@@ -10,9 +10,32 @@ import Facebook from 'next-auth/providers/facebook';
 import GitHub from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
 
+class InvalidLoginError extends CredentialsSignin {
+    message: string = 'Password is not match';
+}
+class InvalidLoginError2 extends CredentialsSignin {
+    message: string = 'user account is not found.';
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
         strategy: 'jwt',
+    },
+    callbacks: {
+        async session({ session, token }) {
+            await connectMongo();
+            const user = await userSchema.findById(token?.sub);
+            if (user) {
+                session.user.role = user.role || 'user';
+            } else {
+                session.user.role = 'user';
+            }
+
+            return session;
+        },
+        async jwt({ token, user, account, profile }) {
+            return token;
+        },
     },
 
     ...authConfig,
@@ -41,20 +64,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         password: string;
                     };
 
-                    const foundUser = await User.findOne({ userName: user });
+                    const foundUser = await userSchema.findOne({
+                        userName: user,
+                    });
 
                     if (foundUser) {
                         if (foundUser.password === password) {
                             return foundUser;
                         } else {
-                            throw new Error('Password does not match');
+                            throw new InvalidLoginError();
                         }
                     } else {
-                        throw new Error('User not found');
+                        throw new InvalidLoginError2();
                     }
                 } catch (error) {
                     console.error('Authorization error:', error);
-                    throw new Error('Internal server error');
+                    throw error;
                 }
             },
         }),
