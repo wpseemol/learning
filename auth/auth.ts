@@ -4,6 +4,7 @@ import { User } from '@/db/user-shema';
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import NextAuth from 'next-auth';
 
+import authConfig from '@/auth/auth.config';
 import Credentials from 'next-auth/providers/credentials';
 import Facebook from 'next-auth/providers/facebook';
 import GitHub from 'next-auth/providers/github';
@@ -13,6 +14,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session: {
         strategy: 'jwt',
     },
+
+    ...authConfig,
+
     adapter: MongoDBAdapter(client),
     providers: [
         Credentials({

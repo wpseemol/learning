@@ -6,8 +6,6 @@ import Image from 'next/image';
 export default function HomeUserInfo() {
     const { data: session, status } = useSession();
 
-    console.log('session:', session);
-
     return (
         session?.user && (
             <div className="mt-5 flex flex-col items-center space-y-2">
