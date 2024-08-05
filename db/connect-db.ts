@@ -1,7 +1,6 @@
 import mongoose, { Mongoose } from 'mongoose';
 
-const databases = 'learning-auth';
-const MONGO_URI = process.env.NEXT_PUBLIC_MONGODB_CONNECT_URL + databases;
+const MONGO_URI = process.env.NEXT_PUBLIC_MONGODB_CONNECT_URL!;
 
 interface Cached {
     connection?: Mongoose | null;

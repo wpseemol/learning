@@ -1,8 +1,7 @@
 // This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const databases = 'learning-auth';
-const MONGO_URI = process.env.NEXT_PUBLIC_MONGODB_CONNECT_URL + databases;
+const MONGO_URI = process.env.NEXT_PUBLIC_MONGODB_CONNECT_URL!;
 
 if (!MONGO_URI) {
     throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
