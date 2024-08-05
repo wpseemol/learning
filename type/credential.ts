@@ -1,3 +1,5 @@
+import { Types } from 'mongoose';
+
 type Variant = 'Login' | 'Register';
 
 interface Credential {
@@ -5,7 +7,20 @@ interface Credential {
 }
 //  next user type problem solve
 
-export type { Credential };
+interface IsHasAccount {
+    access_token: string;
+    id_token?: string;
+    refresh_token?: string;
+    expires_at?: number;
+    scope?: string;
+    token_type?: string;
+    providerAccountId?: string;
+    provider?: string;
+    type?: string;
+    userId: Types.ObjectId;
+}
+
+export type { Credential, IsHasAccount };
 
 declare module 'next-auth' {
     /**

@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
         );
 
         return NextResponse.json(
-            { accessToken, expiresIn: 900 },
+            { accessToken, expiresIn: 900, refreshToken: newRefreshToken },
             { status: 200 }
         );
     } catch (error) {

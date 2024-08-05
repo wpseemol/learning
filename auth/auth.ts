@@ -5,18 +5,21 @@ import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import NextAuth, { CredentialsSignin } from 'next-auth';
 
 import authConfig from '@/auth/auth.config';
+import { AccountSchema } from '@/db/account-shema';
+import { IsHasAccount } from '@/type/credential';
 import { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 import Facebook from 'next-auth/providers/facebook';
 import GitHub from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
+import { credentialsAccTokenRefToken } from './credentials-acc-token-ref-token';
 
 type CustomToken = JWT & {
     accessToken?: string;
     accessTokenExpires?: number;
     refreshToken?: string;
     role?: string;
-    error?: string;
+    error?: string | null;
     provider: string;
 };
 
@@ -70,9 +73,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return session;
         },
         async jwt({ token, user, account, profile }) {
-            console.log('JWT from auth user:', user);
-            console.log('JWT from auth account:', account);
-            console.log('JWT from auth token:', token);
+            // console.log('JWT from auth user:', user);
+            // console.log('JWT from auth account:', account);
+            // console.log('JWT from auth token:', token);
 
             const typedToken = token as CustomToken;
 
@@ -83,14 +86,61 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
 
             if (account) {
+                typedToken.provider = account.provider;
                 switch (account.provider) {
                     case 'google':
                         typedToken.accessToken = account.access_token;
                         typedToken.accessTokenExpires =
                             Date.now() + (account.expires_in ?? 0) * 1000;
                         typedToken.refreshToken = account.refresh_token;
-                        typedToken.provider = account.provider;
 
+                        break;
+                    case 'credentials':
+                        const providerAccountId: string =
+                            account?.providerAccountId || '';
+                        if (providerAccountId) {
+                            await connectMongo();
+
+                            const isHasTokens: IsHasAccount | null =
+                                await AccountSchema.findOne({
+                                    userId: providerAccountId,
+                                });
+
+                            console.log('jwt is hasToken:', isHasTokens);
+
+                            if (!!isHasTokens) {
+                                typedToken.accessToken =
+                                    isHasTokens.access_token;
+                                typedToken.refreshToken =
+                                    isHasTokens.refresh_token;
+                                typedToken.accessTokenExpires =
+                                    Date.now() +
+                                    (isHasTokens.expires_at ?? 0) * 1000;
+                            } else {
+                                const response =
+                                    credentialsAccTokenRefToken(
+                                        providerAccountId
+                                    );
+
+                                console.log('response date:', response);
+
+                                await connectMongo();
+                                const isCreate = await AccountSchema.create({
+                                    userId: providerAccountId,
+                                    expires_at: response.expiresIn,
+                                    access_token: response.accessToken,
+                                    refresh_token: response.refreshToken,
+                                    type: account.type,
+                                });
+
+                                console.log('if is created ', isCreate);
+
+                                typedToken.accessToken = response.accessToken;
+                                typedToken.refreshToken = response.refreshToken;
+                                typedToken.accessTokenExpires =
+                                    Date.now() + response.expiresIn * 1000;
+                            }
+                        }
                         break;
                 }
             }
@@ -105,6 +155,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     }
 
                     return refreshAccessGoogleToken(typedToken);
+
+                case 'credentials':
+                    if (
+                        typedToken.accessTokenExpires &&
+                        Date.now() < typedToken.accessTokenExpires
+                    ) {
+                        return typedToken;
+                    }
+                    return refreshAccessTokenCredential(typedToken);
 
                 default:
                     return typedToken;
@@ -130,13 +189,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             ) {
                 if (!credentials) return null;
 
+                const { user, password } = credentials as {
+                    user: string;
+                    password: string;
+                };
                 try {
                     await connectMongo();
-
-                    const { user, password } = credentials as {
-                        user: string;
-                        password: string;
-                    };
 
                     const foundUser = await userSchema.findOne({
                         userName: user,
@@ -236,29 +294,44 @@ async function refreshAccessGoogleToken(token: JWT) {
     }
 }
 
-async function refreshAccessToken(token: CustomToken): Promise<CustomToken> {
+async function refreshAccessTokenCredential(
+    token: CustomToken
+): Promise<CustomToken> {
     try {
-        const response = await fetch('/api/auth/refresh-token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                refreshToken: token.refreshToken,
-            }),
-        });
-
-        const refreshedTokens = await response.json();
+        const response = await fetch(
+            process.env.BASE_URL! + '/api/auth/refresh-token',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    refreshToken: token.refreshToken,
+                }),
+            }
+        );
 
         if (!response.ok) {
-            throw refreshedTokens;
+            throw response;
         }
+        const refreshedTokens = await response.json();
+        await connectMongo();
+        await AccountSchema.findOneAndUpdate(
+            { userId: token.sub },
+            {
+                access_token: refreshedTokens.accessToken,
+                expires_at: refreshedTokens.expiresIn,
+                refresh_token:
+                    refreshedTokens.refreshToken ?? token.refreshToken,
+            }
+        );
 
         return {
             ...token,
             accessToken: refreshedTokens.accessToken,
             accessTokenExpires: Date.now() + refreshedTokens.expiresIn * 1000,
             refreshToken: refreshedTokens.refreshToken ?? token.refreshToken,
+            error: null,
         };
     } catch (error) {
         console.error('Error refreshing access token:', error);
