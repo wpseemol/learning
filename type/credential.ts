@@ -21,5 +21,13 @@ declare module 'next-auth' {
             email: string;
             emailVerified?: boolean;
         };
+
+        error: string | null;
+    }
+
+    interface JWT {
+        accessToken: string;
+        accessTokenExpires: number;
+        refreshToken: string;
     }
 }
