@@ -13,12 +13,12 @@ export default function Home() {
     useEffect(() => {
         const imageContainer = imageHoverContainerRef?.current;
         const zoomTarget = zoomTargetRef?.current;
-        if (imageContainer) {
+        if (imageContainer && zoomTarget) {
             createZoomImageHover(imageContainer, {
                 zoomImageSource: '/sample.avif',
-                customZoom: { width: 300, height: 500 },
+                customZoom: { width: 400, height: 500 },
                 zoomTarget,
-                scale: 3,
+                scale: 5,
             });
         }
     }, [createZoomImageHover]);
