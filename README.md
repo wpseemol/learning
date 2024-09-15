@@ -2,6 +2,8 @@
 
 Welcome to my **Learning Repository**! This is a place where I document and practice various techniques, tools, and technologies that I'm learning. The goal is to have a well-organized collection of notes, examples, and mini-projects that help solidify my understanding of each topic.
 
+![wpseemol learning image](./images/wpseemol%20learning%20banner.jpg)
+
 ## Table of Contents
 
 1. [JavaScript](#javascript)
