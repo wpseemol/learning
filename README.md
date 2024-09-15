@@ -1,4 +1,4 @@
- <h1 align="center">Learning </h1>
+ <h1 align="center">wpSeemol Learning </h1>
 
 Welcome to my **Learning Repository**! This is a place where I document and practice various techniques, tools, and technologies that I'm learning. The goal is to have a well-organized collection of notes, examples, and mini-projects that help solidify my understanding of each topic.
 
