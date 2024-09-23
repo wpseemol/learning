@@ -1,7 +1,7 @@
 <header> 
-  <div align="center">
-    <a href="https://www.npmjs.com/"> 
-    <image width="150" height="70" style="object-fit:cover" src="./images/npm-icon.png" alt="npm icon" />
+  <div align="center" style="height:70px; overflow: hidden;">
+    <a href="https://www.npmjs.com/" > 
+    <image width="150" height="150" style='object-fit:cover' src="./images/npm-icon.png" alt="npm icon" />
   </a>
 </div>
 
