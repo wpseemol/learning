@@ -5,6 +5,7 @@
 -   first you need to open any terminal.
 -   then run the terminal comment, current working pwd.
 
-` php -S localhost:8000`
+`cd ~/public_html ,     
+php -S localhost:8000`
 
 -   Now run php built-in web server.
