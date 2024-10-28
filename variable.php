@@ -21,6 +21,10 @@
      * php comment like this.
      */
 
+     echo "</br>";
+
+     var_dump($_COOKIE); 
+
     ?>
 </body>
 </html>
