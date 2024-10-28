@@ -1,4 +1,8 @@
 <?php 
 
- echo "Hello world";
+ echo "Hello world </br>";
+
+ print("hello world </br>");
+
+ printf( "hello world");
 
