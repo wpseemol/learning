@@ -85,3 +85,7 @@ This section includes a variety of other tools and technologies I explore, such 
 
 -   Each section has its own folder, containing both notes and practical code examples.
 -   Folders are named
+
+<h2> <a href="https://github.com/wpseemol/learning/tree/wordpress">
+ WordPress Learning
+</a> </h2>
