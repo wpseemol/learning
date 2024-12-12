@@ -89,3 +89,7 @@ This section includes a variety of other tools and technologies I explore, such 
 <h2> <a href="https://github.com/wpseemol/learning/tree/wordpress">
  WordPress Learning
 </a> </h2>
+
+<h2> <a href="https://github.com/wpseemol/learning/tree/laravel">
+ Learning Laravel
+</a> </h2>
