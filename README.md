@@ -20,6 +20,8 @@ This repository contains resources, examples, and exercises to help you:
 
 -   for write docker composer yaml file `indent-rainbow` bet extension for write yaml code.
 
+`mongodb://<username>:<password>@<host>:<port>` Example: `mongodb://admin:password@localhost:27017`
+
 <!-- --------------------- -->
 
 ### Prerequisites
