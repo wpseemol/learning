@@ -16,5 +16,15 @@ courses: "all courses"
     - name: "test"
       email: "test@gmail.com"
       role: "content admin"
+    - name: "test1"
+      email: "test1@gmail.com"
+      role: "discussion admin"
+    - {name: "test2", email: "test2@gmail.com",role: "only user"}
+  short_desc: >
+    here is a short description for course
+  login_desc: | 
+    now you can stor all 
+      indentation
+    and related things
 
   
