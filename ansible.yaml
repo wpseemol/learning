@@ -1,0 +1,20 @@
+# let's write some yaml
+
+courses: "all courses"
+  course_name: "Django bank end developer"
+  version: 1.5
+  price: 199
+  is_public: true
+  release_date: 2021-04-05 12:23:22
+  pre_enroll: null
+  tags: 
+    - python
+    - web developer
+    - mysql
+  course_ta: ["test", "test1", "test2"]
+  ta_details:
+    - name: "test"
+      email: "test@gmail.com"
+      role: "content admin"
+
+  
