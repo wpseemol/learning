@@ -1,0 +1,41 @@
+# Define the version of the Docker Compose file format
+version: '3.1'
+
+# Define the services to be run in the Docker Compose environment
+services:
+    # Service for MongoDB database
+    mongodb:
+        # Specify the Docker image for MongoDB
+        image: mongo
+        # Map the container's MongoDB port (27017) to the host's port (27017)
+        ports:
+            - '27017:27017'
+        # Set environment variables for initializing the MongoDB root user
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin # Root username for MongoDB
+            - MONGO_INITDB_ROOT_PASSWORD=password # Root password for MongoDB
+        # Define a volume to persist MongoDB data
+        volumes:
+            - mongo-data:/data/db # Mount a named volume for MongoDB data storage
+
+    # Service for Mongo-Express, a web-based interface for MongoDB
+    mongo-express:
+        # Specify the Docker image for Mongo-Express
+        image: mongo-express
+        # Always restart the container if it stops unexpectedly
+        restart: always
+        # Map the container's Mongo-Express port (8081) to the host's port (8081)
+        ports:
+            - '8081:8081'
+        # Set environment variables for connecting to the MongoDB service
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=admin # MongoDB admin username for Mongo-Express
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=password # MongoDB admin password for Mongo-Express
+            - ME_CONFIG_MONGODB_URL=mongodb://localhost:27017 # Connection string for MongoDB
+            - ME_CONFIG_MONGODB_SERVER=mongodb # Name of the MongoDB service
+
+# Define the named volumes used in the services
+volumes:
+    mongo-data:
+        # Use the local driver for the volume
+        driver: local
