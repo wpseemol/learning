@@ -1,0 +1,1 @@
+hello write use node js fs writeFileSync method.some text append use node file.some text append use node file

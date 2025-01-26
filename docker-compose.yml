@@ -1,0 +1,17 @@
+# version: '3.8' version is not need
+
+services:
+    node-app:
+        image: node
+        working_dir: /app
+        volumes:
+            - .:/app
+            - /app/node_modules
+        ports:
+            - '3000:3000'
+        command:
+            # - 'npm'
+            # - 'run'
+            # - 'dev'
+        environment:
+            - NODE_ENV=development
