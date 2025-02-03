@@ -30,3 +30,11 @@ docker run -it -p 1025:1025 <image_name>
 ```bash
 docker run -it -p 1025:1025 -e key=value -e key=value <image_name>
 ```
+
+<!-- docker environment variable  -->
+
+```bash
+
+docker build -t <image_name>
+
+```
