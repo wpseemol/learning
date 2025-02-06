@@ -80,25 +80,28 @@ Here are some frequently used Docker CLI commands:
     ```
 
 -   Display system information:
+
     ```bash
     docker info
     ```
 
--  Docke yml file build to make container
-   ```bash
-     docker compose up -d
-   ```
+-   Docke yml file build to make container
 
--  Spaceface Docker compose file Path
+    ```bash
+      docker compose up -d
+    ```
+
+-   Spaceface Docker compose file Path
+
 ```bash
     docker compose -f /path/to/your/docker-compose.yml up -d
 ```
 
--  Stopping and Removing Containers
+-   Stopping and Removing Containers
+
 ```bash
     docker compose down
 ```
-
 
 ### Container Commands
 
@@ -106,6 +109,8 @@ Here are some frequently used Docker CLI commands:
 
     ```bash
     docker run -it <image_name>
+    docker run -it --name <container_name> -p port:port -v local/path:docker/path <image_name>
+
     ```
 
 -   List running containers:
@@ -144,35 +149,32 @@ For a complete list of commands, visit the [Docker CLI Reference](https://docs.d
 
 Feel free to contribute by adding examples, fixing issues, or suggesting improvements. Submit a pull request, and we'll review it promptly.
 
-
-
-
-
-
-
 -
-
-
 
 Video Tutorial: https://youtu.be/Qmld1te08Ns
 
 ## Nginx Ubuntu Installation
 
 Update Packages
+
 ```sh
 sudo apt-get update
 ```
 
 Install Nginx
+
 ```sh
 sudo apt-get install nginx
 ```
 
 Verify Installation
+
 ```sh
 sudo nginx -v
 ```
+
 Start Nginx Server
+
 ```sh
 nginx
 ```
@@ -182,43 +184,53 @@ Now visit `http://localhost:80` and you would be able to see default nginx welco
 ## Nginx Docker Installation
 
 Run Docker Ubuntu Image
+
 ```sh
 docker run -it -p 8080:80 ubuntu
 ```
 
 Update Packages
+
 ```sh
 sudo apt-get update
 ```
 
 Install Nginx
+
 ```sh
 sudo apt-get install nginx
 ```
 
 Verify Installation
+
 ```sh
 sudo nginx -v
 ```
+
 Start Nginx Server
+
 ```sh
 nginx
 ```
+
 Now visit `http://localhost:8080` and you would be able to see default nginx welcome page.
 
 ## Nginx Conf File
 
 Install VIM
+
 ```sh
 sudo apt-get install vim
 ```
 
 Open `nginx.conf` file
+
 ```sh
 vim etc/nginx/nginx.conf
 ```
 
 Type Sample Nginx Conf
+
 ```
 events {
 }
@@ -227,7 +239,7 @@ http {
   server {
     listen 80;
     server_name _;
-    
+
     location / {
       return 200 "Hello from Nginx Sever";
     }
@@ -236,20 +248,14 @@ http {
 ```
 
 Reload Nginx
+
 ```
 nginx -s reload
 ```
 
 Visit `localhost:8080` or `localhost:80` and you should see Hello from Nginx Sever on browser.
 
-
-
-
 <!-- -------------------------------------------- -->
-
-
-
-
 
 ## License
 
