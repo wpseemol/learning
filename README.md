@@ -91,9 +91,12 @@ Here are some frequently used Docker CLI commands:
 
 -  Spaceface Docker compose file Path
 ```bash
+    docker compose -f /path/to/your/docker-compose.yml up -d
+```
 
-docker compose -f /path/to/your/docker-compose.yml up -d
-
+-  Stopping and Removing Containers
+```bash
+    docker compose down
 ```
 
 
