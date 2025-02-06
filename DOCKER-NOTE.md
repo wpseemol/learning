@@ -35,6 +35,6 @@ docker run -it -p 1025:1025 -e key=value -e key=value <image_name>
 
 ```bash
 
-docker build -t <image_name>
+docker build -t <image_name> <Dockerfile_path>
 
 ```
