@@ -110,6 +110,7 @@ Here are some frequently used Docker CLI commands:
     ```bash
     docker run -it <image_name>
     docker run -it --name <container_name> -p port:port -v local/path:docker/path <image_name>
+    docker run -it --name <container_name> -p port:port --volume local/path:docker/path <image_name>
 
     ```
 
