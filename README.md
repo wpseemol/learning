@@ -42,3 +42,9 @@ usual i am using pnpm os `pnpm install typescript -g`commend for me.
     yarn add typescript -D
     yarn tsc --init
     ```
+
+-   Other way without initialize npm project.
+-   Run the code.
+    ```bash
+    tsc --init
+    ```
