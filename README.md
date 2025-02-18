@@ -30,9 +30,15 @@ usual i am using pnpm os `pnpm install typescript -g`commend for me.
 -   You can create tsconfig use npm yarn and pnpm run those comments here.
 
     ```bash
+    npm init -y
+    npm install typescript --save-dev
     npx tsc --init
 
+    pnpm init -y
+    pnpm add typescript -D
     pnpm exec tsc --init
 
+    yarn init -y
+    yarn add typescript -D
     yarn tsc --init
     ```
