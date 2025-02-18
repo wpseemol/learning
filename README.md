@@ -48,3 +48,9 @@ usual i am using pnpm os `pnpm install typescript -g`commend for me.
     ```bash
     tsc --init
     ```
+
+### TypeScript Compiler Wash mode Run
+
+    ```bash
+        tsc --watch
+    ```
