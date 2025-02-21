@@ -54,3 +54,5 @@ usual i am using pnpm os `pnpm install typescript -g`commend for me.
     ```bash
         tsc --watch
     ```
+
+### TypeScript Interfaces and Type Aliases.
