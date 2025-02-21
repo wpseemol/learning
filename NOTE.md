@@ -8,3 +8,8 @@
 -   Any, Unknown, Void, Null, undefined, Never.
 
 # Primitives and Reference.
+
+## Type Inference.
+
+-   Understanding type inference.
+-   Type annotations.
