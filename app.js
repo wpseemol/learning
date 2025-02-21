@@ -17,4 +17,10 @@ interface User {
     address: string;
 }
 
-function getData(obj: User) {}
+interface User {
+    email: string;
+}
+
+function getData(obj: User) {
+    obj.email;
+}

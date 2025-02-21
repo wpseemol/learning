@@ -56,3 +56,14 @@ usual i am using pnpm os `pnpm install typescript -g`commend for me.
     ```
 
 ### TypeScript Interfaces and Type Aliases.
+
+-   Interface is like Object Faces
+-   Same Interface Is not over Write It's extends.
+-   Interface Like
+
+```
+    interface Interface_Name{
+    property:Type;
+    name: string;
+    }
+```
