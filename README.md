@@ -57,7 +57,7 @@ usual i am using pnpm os `pnpm install typescript -g`commend for me.
 
 ### TypeScript Interfaces and Type Aliases.
 
--   Interface is like Object Faces
+-   Interface is like Object shapes.
 -   Same Interface Is not over Write It's extends.
 -   Interface Like
 

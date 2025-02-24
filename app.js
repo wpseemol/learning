@@ -1,26 +1,11 @@
-/**
- * Defining InterFaces
- *
- *
- */
-
-/**
- * Interface Or Type
- *
- * UseCase
- *
- */
-
-interface User {
-    name: string;
-    age: number;
-    address: string;
-}
-
-interface User {
-    email: string;
-}
-
-function getData(obj: User) {
-    obj.email;
-}
+var Person = /** @class */ (function () {
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.doSomeThing = function () {
+        console.log(this.name);
+    };
+    return Person;
+}());
+var seemol = new Person('Seemol chakroborti');
+seemol.doSomeThing();
