@@ -16,6 +16,34 @@ This repository contains resources, examples, and exercises to help you:
 
 ## Getting Started
 
+## 💻Run Ubuntu On docker.
+
+-   Run ubuntu Image on inter active mode with out name.
+
+```sh
+    docker run -it ubuntu
+```
+
+-   run Ubuntu withe name.
+
+```sh
+    docker run -it ubuntu --name my-ubuntu
+```
+
+-   Run container
+
+```sh
+    docker start my-ubuntu
+```
+
+-   Ruing Container terminal open.
+
+```bash
+    docker start <container_name>
+    docker exec <container_name> <command>
+    docker exec -it <container_name> bash
+```
+
 <!-- ------------------------- -->
 
 -   for write docker composer yaml file `indent-rainbow` bet extension for write yaml code.
