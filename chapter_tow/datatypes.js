@@ -7,6 +7,8 @@
  * Boolean - true and false.
  * undefined
  * null
+ * Infinity
+ * NaN
  *
  *
  * object
