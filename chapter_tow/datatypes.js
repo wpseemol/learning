@@ -15,3 +15,13 @@
  * Function
  *
  */
+
+/**
+ * Numbers
+ * - number literals
+ *      var n = 133;
+ *
+ */
+
+var n = 1243;
+var f = 3.14;
