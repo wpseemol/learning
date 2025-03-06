@@ -35,3 +35,11 @@ Let's start my learning.
 
     A Boolean represent one of two values: true or false.
     Boolean are often using conditional logic.
+
+#### [Undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
+
+    Undefined is a primitive value automatically assigned to variables that have just been declared.or the formal arguments for which there are on actual argument.
+
+#### [NULL](https://developer.mozilla.org/en-US/docs/Glossary/Null)
+
+    NULL is special type used as a absence of an Object.
