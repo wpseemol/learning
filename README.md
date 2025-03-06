@@ -1,4 +1,4 @@
-# Learning JavaScript
+# ✒️Learning JavaScript
 
 Learning Javascript Stack Learning <a href="https://www.youtube.com/playlist?list=PL_XxuZqN0xVAu_dWUVFbscqZdTzE8t6Z1">JavaScript all you need to know</a>.
 Let's start my learning.
