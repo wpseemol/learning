@@ -11,6 +11,8 @@ Let's start my learning.
     -   Boolean
     -   undefined
     -   null
+    -   Infinity
+    -   NaN
 -   object
     -   Array
     -   Object
