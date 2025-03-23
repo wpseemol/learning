@@ -1,45 +1,38 @@
-# ✒️Learning JavaScript
+# Learning Canvas
 
-Learning Javascript Stack Learning <a href="https://www.youtube.com/playlist?list=PL_XxuZqN0xVAu_dWUVFbscqZdTzE8t6Z1">JavaScript all you need to know</a>.
-Let's start my learning.
+Welcome to my **Canvas Learning Repository**! 🎨  
+This repository is dedicated to documenting my journey as I learn and explore the **HTML5 Canvas API**.
 
-## JavaScript DataType
+## 📌 What is Canvas?
 
--   primitive
+The **HTML5 Canvas API** provides a way to draw graphics, animations, and complex visualizations directly on a web page using JavaScript.
 
-    -   Number
+## 📖 Resources & Notes
 
-    -   String
-    -   Boolean
-    -   undefined
-    -   null
-    -   Infinity
-    -   NaN
+I will be collecting and organizing all the useful resources, tutorials, and code snippets related to Canvas here.
 
--   object
-    -   Array
-    -   Object
-    -   Function
+### 📚 Learning Resources
 
-## Primitive Type Description.
+-   [MDN Web Docs - Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+-   [HTML Canvas Tutorial - W3Schools](https://www.w3schools.com/html/html5_canvas.asp)
+-   [Canvas Deep Dive - HTML5 Rocks](https://www.html5rocks.com/en/tutorials/canvas/)
 
-#### Number
+### 📌 Topics Covered
 
-    In Javascript, numbers are of the type of Numbers,and they can represent both integer and floating point value.
+-   [ ] **Basic Drawing** (Lines, Rectangles, Circles)
+-   [ ] **Working with Colors & Gradients**
+-   [ ] **Images & Patterns**
+-   [ ] **Transformations (Rotate, Scale, Translate)**
+-   [ ] **Animation & Interactivity**
+-   [ ] **Game Development with Canvas**
+-   [ ] **Advanced Effects (Shadows, Compositing, Clipping)**
 
-#### String
+## 📝 Notes & Experiments
 
-    Anything wrapped between quote call string.
+I will add my practice files and code snippets in the `examples/` directory as I progress.
 
-#### Boolean
+## 🚀 Stay Tuned!
 
-    A Boolean represent one of two values: true or false.
-    Boolean are often using conditional logic.
+I will keep updating this repository with new learnings, projects, and experiments.
 
-#### [Undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
-
-    Undefined is a primitive value automatically assigned to variables that have just been declared.or the formal arguments for which there are on actual argument.
-
-#### [NULL](https://developer.mozilla.org/en-US/docs/Glossary/Null)
-
-    NULL is special type used as a absence of an Object.
+Feel free to **fork**, **star**, or **contribute** if you're also learning Canvas! 😊
