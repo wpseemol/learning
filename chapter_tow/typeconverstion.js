@@ -14,3 +14,5 @@ let number3 = parseInt(numberString);
 //console.log(number3);
 
 console.log(Infinity); // Infinity is js type deffrent type.
+
+console.log(typeof Infinity); // Infinity is number type.
