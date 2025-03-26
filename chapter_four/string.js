@@ -38,3 +38,11 @@ const bb = "bb text";
 const stringConcat = aa.concat(bb); // 'some text herebb text'
 
 const subString = aa.substring(4); // ' text here'
+
+const subStr = aa.subStr(4); // ' text here'
+
+const charAt = aa.charAt(4); // 'e'
+
+const startWith = aa.startsWith("s"); // true
+const endWith = aa.endsWith("e"); // true
+
