@@ -2,8 +2,6 @@
 
 // && or || oparetor
 
-let helo = 'some text here';
-
 /**
  *  && oparetor
  *
@@ -22,3 +20,8 @@ let helo = 'some text here';
  *
  *
  */
+
+
+// ternary oparator
+
+// condition ? true : false
