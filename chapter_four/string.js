@@ -23,3 +23,18 @@ const date = new Date();
 const str5 = date.toString(); // 'Sun Dec 20 2020 18:00:00 GMT+0600 (Bangladesh Standard Time)'
 
 // string Escape notation.
+
+// string comparison.
+
+let a = "abc";
+let b = 'bcd';
+
+const strCompar = a === b;
+//console.log(strCompar); // false
+
+const aa = "some text here";
+const bb = "bb text";
+
+const stringConcat = aa.concat(bb); // 'some text herebb text'
+
+const subString = aa.substring(4); // ' text here'
