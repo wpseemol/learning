@@ -1,3 +1,3 @@
 # 📒 JavaScript Note
 
-todya watch math 17 number video
+I am watching 38 number class 

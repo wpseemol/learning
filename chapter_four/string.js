@@ -7,12 +7,12 @@
 
 const str = "some thing"; // string literal
 const str2 = String("some thing"); // string constructor
-
+const strObj = new String("some thing"); // string object
 // string type conversion.
 
 // 1. Number to string
 const num = 123;
-const str3 = num.toString(); // '123'
+const strTostring = num.toString(); // '123'
 
 // 2. Boolean to string 
 const bool = true;  
@@ -21,3 +21,5 @@ const str4 = bool.toString(); // 'true'
 // 3. Date to string
 const date = new Date();
 const str5 = date.toString(); // 'Sun Dec 20 2020 18:00:00 GMT+0600 (Bangladesh Standard Time)'
+
+// string Escape notation.
