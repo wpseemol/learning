@@ -44,5 +44,13 @@ const subStr = aa.subStr(4); // ' text here'
 const charAt = aa.charAt(4); // 'e'
 
 const startWith = aa.startsWith("s"); // true
-const endWith = aa.endsWith("e"); // true
+const endWith = aa.endsWith("e")  ; // true
+const uppercased = aa.toUpperCase(); // 'SOME TEXT HERE'
+const lowercased = aa.toLowerCase(); // 'some text here'   
+const strTrim = "  some text here  ".trim(); // 'some text here'
+const strTrimStart = "  some text here  ".trimStart(); // 'some text here  '
+
+const strLenght = aa.length; // 15
+
+
 
