@@ -17,12 +17,43 @@ function test (a) {
     console.log(a);
 }
 
-test('Hello World');
+// test('Hello World');
 
 
 function test1 (a) {
     console.log(typeof arguments) }
 
-test1('Hello World');
+// test1('Hello World');
+
+
+function test2 () {
+    let message = 'refarance to inside function'
+    function insideFunction () {
+        console.log(message);
+    }
+
+    return insideFunction;
+
+
+}
+
+// const insideFunction = test2();
+
+// insideFunction();
+
+
+for (var i = 1; i < 6; i++) {
+
+
+    (function (i){
+        setTimeout(() => {
+            console.log(i);
+        }, 1000);
+    })(i)
+    
+       
+    };
+
+
 
 
