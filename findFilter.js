@@ -8,23 +8,27 @@ const resultFilter = array.filter((item) => item === 3);
 console.log("js builten \n","find:",resultFind,"filter:", resultFilter); 
 
 function myFilter(array, callback) {
+    const result = [];
     for (let i = 0; i < array.length; i++) {
         if (callback(array[i], i, array)) {
-            return [array[i]];
+            result.push(array[i]);
         }
     }
+    return result;
 }
 
 function myFind(array, callback) {
+     
     for (let i = 0; i < array.length; i++) {
         if (callback(array[i], i, array)) {
-            return array[i];
+            return array[i]
         }
     }
+    
 }
 
-const myFilterResult = myFilter(array, (item) => item === 3);
+const myFilterResult = myFilter(array, (item) => item !== 3);
 console.log("my create \n","my filter:", myFilterResult);
 
-const myFindResult = myFind(array, (item) => item === 3);
+const myFindResult = myFind(array, (item) => item !== 3);
 console.log("my create \n","my find:", myFindResult);
