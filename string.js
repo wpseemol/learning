@@ -53,4 +53,3 @@ const strTrimStart = "  some text here  ".trimStart(); // 'some text here  '
 const strLenght = aa.length; // 15
 
 
-
