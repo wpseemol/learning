@@ -1,4 +1,4 @@
-const array = [1, 2, 3, 4, 5];
+const arr = [1, 2, 3, 4, 5];
 
 /*
 array.forEach(function (element) {
@@ -9,12 +9,19 @@ array.forEach(function (element) {
 
 
 
-function myForEach(array, callback) {
-    for (let i = 0; i < array.lenght; i++){
+function myForEach(array =[], callback) {
+    
+    for (let i = 0; i < array.length; i++){
+      console.log("array[i]:", array[i]);
         callback(array[i],i, array);
     }
 }
 
-myForEach(array, function (element, index, array) {
-    console.log(element, index, array);
-})
+myForEach(arr, function (element, index, array) {
+    console.log("element:", element);
+    console.log("index:", index);
+    console.log("array:", array);
+});
+
+
+// console.log("array:", array);
