@@ -1,45 +1,59 @@
-# ✒️Learning JavaScript
+# Webpack Learning Documentation
 
-Learning Javascript Stack Learning <a href="https://www.youtube.com/playlist?list=PL_XxuZqN0xVAu_dWUVFbscqZdTzE8t6Z1">JavaScript all you need to know</a>.
-Let's start my learning.
+Welcome to the Webpack learning project! This document provides an overview of Webpack and how to use it effectively.
 
-## JavaScript DataType
+## Table of Contents
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Basic Configuration](#basic-configuration)
+- [Key Concepts](#key-concepts)
+- [Usage](#usage)
+- [Resources](#resources)
 
--   primitive
+## Introduction
+Webpack is a powerful module bundler for JavaScript applications. It processes your application and generates optimized bundles for deployment.
 
-    -   Number
+## Installation
+To install Webpack and its CLI globally, use the following command:
+```bash
+npm install --save-dev webpack webpack-cli
+```
 
-    -   String
-    -   Boolean
-    -   undefined
-    -   null
-    -   Infinity
-    -   NaN
+## Basic Configuration
+Create a `webpack.config.js` file in your project root:
+```javascript
+const path = require('path');
 
--   object
-    -   Array
-    -   Object
-    -   Function
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+    mode: 'development',
+};
+```
 
-## Primitive Type Description.
+## Key Concepts
+- **Entry**: The starting point of your application.
+- **Output**: Where the bundled files are saved.
+- **Loaders**: Transform files into modules.
+- **Plugins**: Extend Webpack's functionality.
 
-#### Number
+## Usage
+1. Add a script to your `package.json`:
+     ```json
+     "scripts": {
+         "build": "webpack"
+     }
+     ```
+2. Run the build process:
+     ```bash
+     npm run build
+     ```
 
-    In Javascript, numbers are of the type of Numbers,and they can represent both integer and floating point value.
+## Resources
+- [Webpack Official Documentation](https://webpack.js.org/)
+- [Webpack GitHub Repository](https://github.com/webpack/webpack)
 
-#### String
-
-    Anything wrapped between quote call string.
-
-#### Boolean
-
-    A Boolean represent one of two values: true or false.
-    Boolean are often using conditional logic.
-
-#### [Undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
-
-    Undefined is a primitive value automatically assigned to variables that have just been declared.or the formal arguments for which there are on actual argument.
-
-#### [NULL](https://developer.mozilla.org/en-US/docs/Glossary/Null)
-
-    NULL is special type used as a absence of an Object.
+Happy learning!

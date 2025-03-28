@@ -1,6 +1,0 @@
-// Arithmetic Operator
-// + - * / % ++ --
-
-//Logical Operator
-// &&
-// ||
