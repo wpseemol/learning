@@ -55,5 +55,10 @@ for (var i = 1; i < 6; i++) {
     };
 
 
+const test3 = new Function('a', 'b', 'console.log("Constructor fucntion:",a + b)'); // Function constructor
+
+test3(2, 3);
+
+
 
 

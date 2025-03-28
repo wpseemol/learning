@@ -1,3 +1,3 @@
 # 📒 JavaScript Note
 
-I am watching 75 number class 
+I am watching 111 number class 
