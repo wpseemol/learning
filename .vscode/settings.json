@@ -1,0 +1,49 @@
+
+
+{
+
+   
+    
+    // Set the font size for the editor
+    "editor.fontSize": 22,
+    
+    // Set the color theme for the editor
+    "workbench.colorTheme": "Learn with Sumit - Peace of the eye",
+   
+
+    // Set the font size for the integrated terminal
+    "terminal.integrated.fontSize": 20,
+
+
+
+
+    // Specify the default formatter (e.g., Prettier) for JavaScript/TypeScript
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    // Enable ESLint for linting JavaScript/TypeScript files
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+    // Configure Webpack-related settings
+    "files.associations": {
+        "webpack.config.js": "javascript"
+    },
+
+    // Enable IntelliSense for Webpack configuration files
+    "javascript.suggest.paths": true,
+
+    // Exclude node_modules from search results to improve performance
+    "search.exclude": {
+        "**/node_modules": true
+    },
+
+    // // Enable breadcrumbs for better navigation in large projects
+    // "breadcrumbs.enabled": true
+    // Set the cursor style in the editor
+    "editor.cursorStyle": "line-thin",
+    "editor.cursorBlinking": "smooth"
+}
