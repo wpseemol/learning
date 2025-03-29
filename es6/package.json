@@ -1,0 +1,17 @@
+{
+  "name": "es6",
+  "version": "1.0.0",
+  "description": "Learning javascript ES6 features. from all you need to know javascript stack learner playlist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.0",
+  "devDependencies": {
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  }
+}

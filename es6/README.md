@@ -12,4 +12,17 @@ Webpack is a powerful module bundler for JavaScript applications. It processes y
 - **Hot Module Replacement (HMR)**: Update modules in real-time without refreshing the browser.
 
 ## Installation
-First you need to npm i -y package initale
+First you need to initialize your project.
+```sh
+    npm init -y
+```
+```sh
+    pnpm init -y
+```
+Then you neet to install webpack and webpack-cli development dependency
+```sh
+    npm install webpack webpack-cli --save-dev
+```
+```sh
+    pnpm add webpack webpack-cli --save-dev
+```
