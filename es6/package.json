@@ -4,7 +4,7 @@
   "description": "Learning javascript ES6 features. from all you need to know javascript stack learner playlist",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development",
+    "dev": "webpack-dev-server --mode development --open",
     "build": "webpack"
   },
   "keywords": [],
@@ -15,10 +15,14 @@
     "@babel/core": "^7.26.10",
     "@babel/plugin-transform-runtime": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
+    "ansi-html-community": "^0.0.8",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
     "webpack": "^5.98.0",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^4.15.1"
   }
 }
