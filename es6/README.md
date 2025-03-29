@@ -26,3 +26,26 @@ Then you neet to install webpack and webpack-cli development dependency
 ```sh
     pnpm add webpack webpack-cli --save-dev
 ```
+then create webpack.config.js file it nececre all script write insite here.
+
+then webpack.confing.js file add endtes file and out put some file
+
+```
+const path = require("path");
+
+module.exports = {
+    entry: "./src/scripts/index.js",
+    output: {
+        path : path.resolve(__dirname, "dist"),
+        filename: "bundle.js"
+    },
+    mode: "development",
+
+}
+```
+
+then set loder bable loder or more loder
+
+```sh
+pnpm add -D babel-loader @babel/core @babel/preset-env
+```
