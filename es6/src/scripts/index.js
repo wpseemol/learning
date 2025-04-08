@@ -89,9 +89,6 @@ document.body.innerHTML = `
 // [Symbol.iterator]: function* () {
 //     let currentValue = this.start;
 //     while (currentValue <= this.end) {
-//         yield currentValue++;
-        
-//     }
-// } 
+//         yield curhttp://127.0.0.1:5500/index.html
 
 
