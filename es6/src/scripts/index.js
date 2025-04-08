@@ -13,21 +13,21 @@ document.body.innerHTML = `
  * js iterator
  */
 
-const array = [1, 2];
-function createIterator (collection) {
-    let index = 0;
-    return {
-        next() {
-            return {
-                value: collection[index++],
-                done: index > collection.length
-            }
-        }
-    }
+// const array = [1, 2];
+// function createIterator (collection) {
+//     let index = 0;
+//     return {
+//         next() {
+//             return {
+//                 value: collection[index++],
+//                 done: index > collection.length
+//             }
+//         }
+//     }
 
-}
+// }
 
-const iterator = createIterator(array);
+// const iterator = createIterator(array);
 // console.log(iterator.next());
 // console.log(iterator.next());
 // console.log(iterator.next());
@@ -36,18 +36,18 @@ const iterator = createIterator(array);
  * es6 sembol iterator
  */
 
-const array2 = [1, 2, 3, 4, 5];
+// const array2 = [1, 2, 3, 4, 5];
 
 //console.log(array2[Symbol.iterator]());
 // console.log("string iterator"[Symbol.iterator]());
 
-const iterator2 = array2[Symbol.iterator]();
+// const iterator2 = array2[Symbol.iterator]();
 // console.log(iterator2.next());
 // console.log(iterator2.next());
 // console.log(iterator2.next());
 
-const str = "string iterator";
-const iterator3 = str[Symbol.iterator]();
+// const str = "string iterator";
+// const iterator3 = str[Symbol.iterator]();
 // console.log(iterator3.next());
 // console.log(iterator3.next());
 // console.log(iterator3.next());
@@ -55,7 +55,43 @@ const iterator3 = str[Symbol.iterator]();
 /**
  * for of loop
  */
+// const array3 = [1, 2, 3, 4, 5];
+
+//  for (const item of array3) {
+//      console.log(item);
+//  }
+
+// const str2 = "string iterator";
+// for (const item of str2) {
+//     console.log(item);
+// }
+
+// const obj = {
+//     a: 1,
+//     b: 2,
+// }
+
+// for (const item of obj) {
+//     console.log(item);
+// }
+
+/**
+ * for in loop
+ * for in loop is used to iterate over the properties of an object
+ */
+
+// for (const key in obj) {
+//     console.log(key);
+//     console.log(obj[key]);
+// }
 
 
+// [Symbol.iterator]: function* () {
+//     let currentValue = this.start;
+//     while (currentValue <= this.end) {
+//         yield currentValue++;
+        
+//     }
+// } 
 
 
