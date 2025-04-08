@@ -35,3 +35,27 @@ const iterator = createIterator(array);
 /**
  * es6 sembol iterator
  */
+
+const array2 = [1, 2, 3, 4, 5];
+
+//console.log(array2[Symbol.iterator]());
+// console.log("string iterator"[Symbol.iterator]());
+
+const iterator2 = array2[Symbol.iterator]();
+// console.log(iterator2.next());
+// console.log(iterator2.next());
+// console.log(iterator2.next());
+
+const str = "string iterator";
+const iterator3 = str[Symbol.iterator]();
+// console.log(iterator3.next());
+// console.log(iterator3.next());
+// console.log(iterator3.next());
+
+/**
+ * for of loop
+ */
+
+
+
+
