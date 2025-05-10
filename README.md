@@ -1,95 +1,41 @@
- <h1 align="center">wpSeemol Learning </h1>
+# Learning MongoDB Database
 
-Welcome to my **Learning Repository**! This is a place where I document and practice various techniques, tools, and technologies that I'm learning. The goal is to have a well-organized collection of notes, examples, and mini-projects that help solidify my understanding of each topic.
+MongoDB is a NoSQL database that stores data in a flexible, JSON-like format. It is designed for scalability, high performance, and ease of development.
 
-![wpseemol learning image](./images/wpseemol%20learning%20banner.jpg)
+## Key Concepts
 
-## Table of Contents
+-    **Document**: A record in MongoDB, stored in BSON format (Binary JSON).
+-    **Collection**: A group of documents, similar to a table in relational databases.
+-    **Database**: A container for collections.
 
-1. [JavaScript](#javascript)
-2. [Python](#python)
-3. [Shadcn](#shadcn)
-4. [Redux](#redux)
-5. [Other Tools & Techniques](#other-tools--techniques)
-6. [How to Use This Repo](#how-to-use-this-repo)
+## Advantages
 
----
+-    Schema-less design allows flexibility.
+-    Horizontal scaling with sharding.
+-    High availability with replication.
 
-## [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+## Basic Commands
 
-Here, I practice **JavaScript** fundamentals, advanced topics, and some specific use cases. Topics include:
+-    **Insert a document**:
+     ```javascript
+     db.collection.insertOne({ name: "John", age: 30 });
+     ```
+-    **Find documents**:
+     ```javascript
+     db.collection.find({ age: { $gt: 25 } });
+     ```
+-    **Update a document**:
+     ```javascript
+     db.collection.updateOne({ name: "John" }, { $set: { age: 31 } });
+     ```
+-    **Delete a document**:
+     ```javascript
+     db.collection.deleteOne({ name: "John" });
+     ```
 
--   Basic Syntax and Operators
--   Functions and Scope
--   Object-Oriented Programming
--   Asynchronous Programming (Promises, Async/Await)
--   DOM Manipulation
--   ES6+ Features
--   JavaScript Design Patterns
+## Resources
 
----
+-    [MongoDB Documentation](https://www.mongodb.com/docs/)
+-    [MongoDB University](https://university.mongodb.com/)
 
-## [Python](https://docs.python.org/3/)
-
-This section contains all the Python-related learning materials. It includes:
-
--   Basic Syntax and Data Structures
--   Object-Oriented Programming
--   Functions and Modules
--   File I/O
--   Exception Handling
--   Python Libraries and Frameworks (e.g., NumPy, Pandas)
--   Automation Scripts and More
-
----
-
-## [Shadcn](https://ui.shadcn.com/docs)
-
-In this section, I explore **Shadcn** and its components for building modern UIs:
-
--   Installation and Setup
--   Component Usage
--   Custom Styling
--   Integration with Other Tools
--   Best Practices
-
----
-
-## [Redux](https://redux.js.org/)
-
-This section focuses on **Redux**, a popular state management library:
-
--   Setting Up Redux in a Project
--   Actions, Reducers, and Store
--   Working with Redux Middleware (e.g., Redux Thunk)
--   Integration with React
--   Redux Toolkit
--   Best Practices for Scalable State Management
-
----
-
-## Other Tools & Techniques
-
-This section includes a variety of other tools and technologies I explore, such as:
-
--   Shell Scripting (`sh`)
--   TypeScript
--   Node.js
--   REST APIs and GraphQL
--   React and Next.js Concepts
--   DevOps and CI/CD Pipelines
-
----
-
-## How to Use This Repo
-
--   Each section has its own folder, containing both notes and practical code examples.
--   Folders are named
-
-<h2> <a href="https://github.com/wpseemol/learning/tree/wordpress">
- WordPress Learning
-</a> </h2>
-
-<h2> <a href="https://github.com/wpseemol/learning/tree/laravel">
- Learning Laravel
-</a> </h2>
+Happy learning!
