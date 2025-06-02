@@ -94,7 +94,21 @@ docker run -d \
      docker stop mongodb
      docker rm mongodb
 
-## Accessing MongoDB Shell Inside a Docker Container
+### Accessing MongoDB Shell Inside a Docker Container.
+
+You can first use the comment to access docker inside terminal use this command
+
+```bash
+
+     docker exec -it mongodb bash
+
+```
+
+then you can use mongodb database use commend inside running ubuntu.
+
+```bash
+     mongosh -u root -p 123456
+```
 
 If your MongoDB server is running inside a Docker container, you can access the interactive MongoDB shell (`mongosh`) directly within the container using the following command:
 
