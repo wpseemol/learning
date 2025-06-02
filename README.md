@@ -38,7 +38,83 @@ MongoDB is a NoSQL database that stores data in a flexible, JSON-like format. It
 -    [MongoDB Documentation](https://www.mongodb.com/docs/)
 -    [MongoDB University](https://university.mongodb.com/)
 
-Happy learning!
+## MongoDB database run with docker
+
+### MongoDB databases run with docker composes yml file.
+
+To quickly run a MongoDB database using Docker Compose, create a `docker-compose.yml` file with the following content:
+
+```yaml
+version: "3.8"
+services:
+     mongodb:
+          image: mongo:latest
+          container_name: mongodb
+          ports:
+               - "27017:27017"
+          environment:
+               MONGO_INITDB_ROOT_USERNAME: root
+               MONGO_INITDB_ROOT_PASSWORD: 123456
+          volumes:
+               - mongodb_data:/data/db
+
+volumes:
+     mongodb_data:
+```
+
+Start MongoDB with:
+
+```bash
+docker compose up -d
+```
+
+Stop and remove the container with:
+
+```bash
+docker compose down
+```
+
+### mongodb use with docker cli commend
+
+docker run -d \
+ --name mongodb \
+ -p 27017:27017 \
+ -e MONGO_INITDB_ROOT_USERNAME=root \
+ -e MONGO_INITDB_ROOT_PASSWORD=123456 \
+ mongo:latest
+
+     - `--name mongodb`: Names the container "mongodb".
+     - `-p 27017:27017`: Maps the default MongoDB port to your local machine.
+     - `-e MONGO_INITDB_ROOT_USERNAME` and `-e MONGO_INITDB_ROOT_PASSWORD`: Set the root username and password.
+     - `mongo:latest`: Uses the latest official MongoDB image.
+
+     To stop and remove the container:
+
+     ```bash
+     docker stop mongodb
+     docker rm mongodb
+
+## Accessing MongoDB Shell Inside a Docker Container
+
+If your MongoDB server is running inside a Docker container, you can access the interactive MongoDB shell (`mongosh`) directly within the container using the following command:
+
+```bash
+docker exec -it mongodb mongosh -u root -p 123456 --authenticationDatabase admin
+```
+
+-    `docker exec -it mongodb`: Runs a command in the running container named `mongodb` with interactive terminal access.
+-    `mongosh`: Starts the MongoDB shell inside the container.
+-    `-u root`: Specifies the MongoDB username.
+-    `-p 123456`: Specifies the MongoDB password.
+-    `--authenticationDatabase admin`: Authenticates against the `admin` database (required for root user).
+
+This command opens an interactive shell session connected to your MongoDB instance running inside Docker. You can now run MongoDB commands as usual.
+
+To exit the shell, type:
+
+```javascript
+> exit
+```
 
 ## Connecting to MongoDB
 
