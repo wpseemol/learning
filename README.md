@@ -172,3 +172,15 @@ MongoDB provides powerful update operators to modify documents in a collection. 
 -    **$rename**: Renames a field.
 
 For a detailed guide on update operations and operators, see [mongodb-update.md](./mongodb-update.md).
+
+## MongoDB Delete Operations
+
+MongoDB supports various methods to delete documents from a collection. You can remove single or multiple documents based on specified criteria.
+
+### Common Delete Methods
+
+-    **deleteOne()**: Deletes the first document that matches the filter.
+-    **deleteMany()**: Deletes all documents that match the filter.
+-    **findOneAndDelete()**: Finds and deletes a single document, returning the deleted document.
+
+For a detailed reference on delete operations, see [mongodb-deleted.md](./mongodb-deleted.md).
