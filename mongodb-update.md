@@ -64,3 +64,51 @@ This removes `"guest"` from the `roles` array for the user with `username` `"fra
 
 **Reference:**  
 [MongoDB $pull Operator Documentation](https://www.mongodb.com/docs/manual/reference/operator/update/pull/)
+
+## `$addToSet` Operator
+
+The `$addToSet` operator adds a value to an array only if the value does not already exist in the array.
+
+**Example:**
+
+```js
+db.users.updateOne({ username: "grace" }, { $addToSet: { roles: "editor" } });
+```
+
+This adds `"editor"` to the `roles` array for the user with `username` `"grace"` only if it is not already present.
+
+**Reference:**  
+[MongoDB $addToSet Operator Documentation](https://www.mongodb.com/docs/manual/reference/operator/update/addToSet/)
+
+## `$min` Operator
+
+The `$min` operator updates the value of the field to a specified value if the specified value is less than the current value of the field.
+
+**Example:**
+
+```js
+db.users.updateOne({ username: "hannah" }, { $min: { age: 25 } });
+```
+
+This sets the `age` field to `25` for the user with `username` `"hannah"` only if the current `age` is greater than `25`.
+
+**Reference:**  
+[MongoDB $min Operator Documentation](https://www.mongodb.com/docs/manual/reference/operator/update/min/)
+
+## `replaceOne` Method
+
+The `replaceOne` method replaces an entire document with a new document. Unlike update operators, `replaceOne` does not use update operators like `$set` or `$unset`; instead, it completely overwrites the matched document.
+
+**Example:**
+
+```js
+db.users.replaceOne(
+     { username: "ivan" },
+     { username: "ivan", email: "ivan@example.com", age: 30 }
+);
+```
+
+This replaces the entire document for the user with `username` `"ivan"` with the new document. Any fields not specified in the replacement document will be removed.
+
+**Reference:**  
+[MongoDB replaceOne Documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.replaceOne/)
