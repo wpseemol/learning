@@ -157,3 +157,18 @@ For a detailed reference on MongoDB data types, see [mongodb-data-type.md](./mon
 ## MongoDB Data Validation
 
 For information on how to validate data in MongoDB, see [mongodb-validation.md](./mongodb-validation.md).
+
+## MongoDB Update Operations
+
+MongoDB provides powerful update operators to modify documents in a collection. Updates can target single or multiple documents and support a variety of operators for flexible data manipulation.
+
+### Common Update Operators
+
+-    **$set**: Sets the value of a field.
+-    **$unset**: Removes a field from a document.
+-    **$inc**: Increments a field by a specified value.
+-    **$push**: Adds an item to an array.
+-    **$pull**: Removes items from an array that match a condition.
+-    **$rename**: Renames a field.
+
+For a detailed guide on update operations and operators, see [mongodb-update.md](./mongodb-update.md).
