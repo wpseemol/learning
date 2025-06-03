@@ -294,4 +294,10 @@ db.collection_name.insertMany([
 
 This command inserts all the provided documents into the collection in a single operation.
 
+#### Show data
+
+```javascript
+db.collection_name.find();
+```
+
 **Note:** Replace `collection_name` with your actual collection name.
