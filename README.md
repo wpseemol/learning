@@ -301,3 +301,243 @@ db.collection_name.find();
 ```
 
 **Note:** Replace `collection_name` with your actual collection name.
+
+## MongoDB Data Types
+
+MongoDB supports a variety of data types for storing values in documents. Some of the most commonly used types include:
+
+-    **String**: Used to store text data.
+-    **Number**: Includes `int`, `long`, `double`, and `decimal` types for numeric values.
+-    **Boolean**: Stores `true` or `false`.
+-    **Array**: Stores lists of values.
+-    **Object**: Embedded documents (sub-documents).
+-    **Date**: Stores date and time values.
+-    **ObjectId**: A special type used for unique document identifiers.
+-    **Null**: Represents a null value.
+-    **Binary Data**: Stores binary data.
+-    **Regular Expression**: Stores regular expressions.
+
+Example document with various data types:
+
+```javascript
+{
+     name: "Alice",
+     age: 30,
+     isActive: true,
+     hobbies: ["reading", "coding"],
+     address: { city: "New York", zip: "10001" },
+     createdAt: ISODate("2024-06-01T10:00:00Z"),
+     _id: ObjectId("60c72b2f9af1f23d8c8e6e77"),
+     profilePicture: BinData(0, "base64data"),
+     pattern: /abc/i,
+     spouse: null
+}
+```
+
+For a full list, see the [MongoDB BSON Types documentation](https://www.mongodb.com/docs/manual/reference/bson-types/).
+
+## MongoDB JSON Schema Validation
+
+MongoDB supports JSON Schema validation to enforce the structure and content of documents within a collection. This allows you to define rules for required fields, data types, value ranges, and more, helping maintain data integrity.
+
+### Defining a Schema Validator
+
+You can specify a schema when creating a collection or by updating an existing collection using the `validator` option. The schema uses the [JSON Schema](https://json-schema.org/) standard.
+
+**Example: Create a collection with schema validation**
+
+```javascript
+db.createCollection("users", {
+     validator: {
+          $jsonSchema: {
+               bsonType: "object",
+               required: ["name", "email", "age"],
+               properties: {
+                    name: {
+                         bsonType: "string",
+                         description: "must be a string and is required",
+                    },
+                    email: {
+                         bsonType: "string",
+                         pattern: "^.+@.+$",
+                         description:
+                              "must be a valid email address and is required",
+                    },
+                    age: {
+                         bsonType: "int",
+                         minimum: 18,
+                         description:
+                              "must be an integer greater than or equal to 18 and is required",
+                    },
+               },
+          },
+     },
+});
+```
+
+### Updating Schema Validation on an Existing Collection
+
+You can add or modify validation rules using the `collMod` command:
+
+```javascript
+db.runCommand({
+     collMod: "users",
+     validator: {
+          $jsonSchema: {
+               bsonType: "object",
+               title: "Student Object Validation",
+               required: ["name", "email"],
+               properties: {
+                    name: {
+                         bsonType: "string",
+                         description: "'name' must be a string and is required",
+                    },
+                    email: { bsonType: "string" },
+                    year: {
+                         bsonType: "int",
+                         minimum: 2017,
+                         maximum: 3017,
+                         description:
+                              "'year' must be an integer in [ 2017, 3017 ] and is required",
+                    },
+                    country: {
+                         enum: ["France", "United Kingdom", "United States"],
+                         description:
+                              "Must be either France, United Kingdom, or United States",
+                    },
+               },
+          },
+     },
+});
+```
+
+### Validation Levels
+
+-    **strict**: Rejects any document that fails validation (default).
+-    **moderate**: Only newly inserted or updated documents are validated.
+
+Set the validation level and action:
+
+```javascript
+db.createCollection("products", {
+     validator: {
+          /* schema */
+     },
+     validationLevel: "strict", // or "moderate"
+     validationAction: "error", // or "warn"
+});
+```
+
+### Benefits
+
+-    Ensures data consistency and quality.
+-    Prevents accidental insertion of malformed documents.
+-    Makes application code simpler by offloading validation to the database.
+
+For more details, see the [MongoDB Schema Validation documentation](https://www.mongodb.com/docs/manual/core/schema-validation/).
+
+## Setting Validation Rules on an Existing Collection
+
+To set or update validation rules on an existing MongoDB collection, use the `db.runCommand` method with the `collMod` command. This allows you to define or modify the schema validator for the collection.
+
+**Example: Add or update validation rules on the `users` collection**
+
+```javascript
+db.runCommand({
+     collMod: "users",
+     validator: {
+          $jsonSchema: {
+               bsonType: "object",
+               required: ["name", "email"],
+               properties: {
+                    name: {
+                         bsonType: "string",
+                         description: "must be a string and is required",
+                    },
+                    email: {
+                         bsonType: "string",
+                         pattern: "^.+@.+$",
+                         description:
+                              "must be a valid email address and is required",
+                    },
+                    age: {
+                         bsonType: "int",
+                         minimum: 18,
+                         description:
+                              "must be an integer greater than or equal to 18",
+                    },
+               },
+          },
+     },
+     validationLevel: "strict", // Optional: "strict" or "moderate"
+     validationAction: "error", // Optional: "error" or "warn"
+});
+```
+
+-    `collMod`: The name of the collection to modify.
+-    `validator`: The JSON Schema validation rules.
+-    `validationLevel`: (Optional) Determines which operations are validated.
+-    `validationAction`: (Optional) Determines whether to error or warn on validation failure.
+
+**Note:** Only documents inserted or updated after setting the validator are affected by the new rules.
+
+For more details, see the [MongoDB collMod documentation](https://www.mongodb.com/docs/manual/reference/command/collMod/).
+
+## Updating Documents in MongoDB
+
+MongoDB provides methods to update documents in a collection: `updateOne()` for a single document and `updateMany()` for multiple documents.
+
+### `updateOne()`
+
+Updates the first document that matches the filter.
+
+**Syntax:**
+
+```javascript
+db.collection_name.updateOne(
+     { filter_field: value }, // Filter criteria
+     { $set: { field_to_update: new_value } } // Update operation
+);
+```
+
+**Example:**
+
+```javascript
+db.users.updateOne({ name: "Alice" }, { $set: { age: 31 } });
+```
+
+This updates the `age` of the first user named "Alice" to 31.
+
+### `updateMany()`
+
+Updates all documents that match the filter.
+
+**Syntax:**
+
+```javascript
+db.collection_name.updateMany(
+     { filter_field: value }, // Filter criteria
+     { $set: { field_to_update: new_value } } // Update operation
+);
+```
+
+**Example:**
+
+```javascript
+db.users.updateMany({ isActive: false }, { $set: { isActive: true } });
+```
+
+This sets `isActive` to `true` for all users where `isActive` is currently `false`.
+
+### Reading Updated Documents
+
+To verify updates, use `find()`:
+
+```javascript
+db.users.find({ name: "Alice" });
+db.users.find({ isActive: true });
+```
+
+**Note:** Replace `collection_name` and field names with your actual collection and fields.
+
+For more details, see the [MongoDB update documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/) and [updateMany](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/).
