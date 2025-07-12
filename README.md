@@ -133,7 +133,7 @@ connectToDatabase();
 
 ### Explanation:
 
--    **`mongodb://root:123456@localhost:27017`**: This is the connection string.
+-    **`mongodb://root:123456@localhost:27017/database_name?authSource=admin`**: This is the connection string.
 
      -    `root`: The username for authentication.
      -    `123456`: The password for authentication.
