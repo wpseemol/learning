@@ -113,7 +113,7 @@ To connect to your MongoDB server, use the following connection string:
 ```javascript
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb://root:123456@localhost:27017";
+const uri = "mongodb://root:123456@localhost:27017/database_name?authSource=admin";
 const client = new MongoClient(uri);
 
 async function connectToDatabase() {
