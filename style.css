@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins, sans-serif;
+}
+
+.counter {
+    min-width: fit-content;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: gray;
+}
+
+#count {
+    margin: 20px 0 20px 0;
+    font-size: 2rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.button-container button {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
