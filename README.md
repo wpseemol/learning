@@ -1,95 +1,57 @@
- <h1 align="center">wpSeemol Learning </h1>
+## Learning Three.js – My Journey
 
-Welcome to my **Learning Repository**! This is a place where I document and practice various techniques, tools, and technologies that I'm learning. The goal is to have a well-organized collection of notes, examples, and mini-projects that help solidify my understanding of each topic.
+This repository documents my personal journey learning **Three.js**, a JavaScript library for creating 3D graphics in the browser using WebGL.  
+I will track my progress, experiments, successes, and mistakes here.
 
-![wpseemol learning image](./images/wpseemol%20learning%20banner.jpg)
+### Why I’m Learning Three.js
 
-## Table of Contents
+- **3D on the web**: I want to understand how 3D scenes, cameras, lights, and materials work in the browser.
+- **Creative projects**: I’d like to build interactive visuals, animations, and maybe small games or data visualizations.
+- **Stronger fundamentals**: While learning Three.js, I also want to improve my JavaScript, math for 3D (vectors, matrices), and graphics concepts.
 
-1. [JavaScript](#javascript)
-2. [Python](#python)
-3. [Shadcn](#shadcn)
-4. [Redux](#redux)
-5. [Other Tools & Techniques](#other-tools--techniques)
-6. [How to Use This Repo](#how-to-use-this-repo)
+### Goals
 
----
+- **Short-term**
+    - Understand the basic Three.js concepts: `Scene`, `Camera`, `Renderer`, `Mesh`, `Geometry`, and `Material`.
+    - Render my first 3D object (a cube) and animate it.
+    - Learn how to orbit around a scene and control the camera.
 
-## [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- **Medium-term**
+    - Work with lights, shadows, textures, and environment maps.
+    - Load 3D models (e.g. `.glb` / `.gltf`) into a scene.
+    - Build at least one small interactive demo (e.g. a 3D portfolio scene or a mini game).
 
-Here, I practice **JavaScript** fundamentals, advanced topics, and some specific use cases. Topics include:
+- **Long-term**
+    - Feel comfortable starting a 3D project from scratch.
+    - Understand performance basics and how to optimize scenes.
+    - Publish one or more Three.js projects online.
 
--   Basic Syntax and Operators
--   Functions and Scope
--   Object-Oriented Programming
--   Asynchronous Programming (Promises, Async/Await)
--   DOM Manipulation
--   ES6+ Features
--   JavaScript Design Patterns
+### Prerequisites
 
----
+I expect to use and improve these skills while learning:
 
-## [Python](https://docs.python.org/3/)
+- Basic **HTML**, **CSS**, and **JavaScript**
+- Node.js and npm (optional, but helpful for running local dev servers and bundlers)
+- A modern browser (Chrome, Firefox, Edge)
 
-This section contains all the Python-related learning materials. It includes:
+### Project Structure
 
--   Basic Syntax and Data Structures
--   Object-Oriented Programming
--   Functions and Modules
--   File I/O
--   Exception Handling
--   Python Libraries and Frameworks (e.g., NumPy, Pandas)
--   Automation Scripts and More
+(This is a template; I will adjust as my project grows.)
 
----
+- `src/`
+    - `01-basic-scene/` – first experiments (scene, camera, renderer, cube)
+    - `02-lights-materials/` – lights, different materials, shadows
+    - `03-textures-models/` – textures, loading 3D models
+    - `04-interactions/` – camera controls, mouse/keyboard input, GUI
+    - `experiments/` – random tests and prototypes
+- `public/` – static files like textures, models, and images
+- `README.md` – this learning journal
 
-## [Shadcn](https://ui.shadcn.com/docs)
+### How to Run the Examples
 
-In this section, I explore **Shadcn** and its components for building modern UIs:
+(Adjust these instructions to match your setup.)
 
--   Installation and Setup
--   Component Usage
--   Custom Styling
--   Integration with Other Tools
--   Best Practices
-
----
-
-## [Redux](https://redux.js.org/)
-
-This section focuses on **Redux**, a popular state management library:
-
--   Setting Up Redux in a Project
--   Actions, Reducers, and Store
--   Working with Redux Middleware (e.g., Redux Thunk)
--   Integration with React
--   Redux Toolkit
--   Best Practices for Scalable State Management
-
----
-
-## Other Tools & Techniques
-
-This section includes a variety of other tools and technologies I explore, such as:
-
--   Shell Scripting (`sh`)
--   TypeScript
--   Node.js
--   REST APIs and GraphQL
--   React and Next.js Concepts
--   DevOps and CI/CD Pipelines
-
----
-
-## How to Use This Repo
-
--   Each section has its own folder, containing both notes and practical code examples.
--   Folders are named
-
-<h2> <a href="https://github.com/wpseemol/learning/tree/wordpress">
- WordPress Learning
-</a> </h2>
-
-<h2> <a href="https://github.com/wpseemol/learning/tree/laravel">
- Learning Laravel
-</a> </h2>
+- **Option 1 – Simple local server**
+    - Use a simple static server (for example with `npm`):
+      npm install -g serve
+      serve .
