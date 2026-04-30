@@ -62,6 +62,17 @@ I’m using this space to take notes, save code snippets, track my progress, and
 
 ---
 
+## How to run C code
+
+fist compile file to create app then you can run the code.
+
+```
+    gcc ./hello.c -o hello
+    or
+    hello.exe
+
+```
+
 ## 📝 Daily Log
 
 _Record what you learned each day. Keep it short or detailed – your choice._
