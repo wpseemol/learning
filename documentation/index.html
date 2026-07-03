@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>How to Install MinGW & Run Your First C Code</title>
+        <!-- Font Awesome for icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <style>
+            /* ---------- RESET & BASE ---------- */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #f0f4f5;
+                color: #1e1e2a;
+                line-height: 1.7;
+                padding: 2rem 1rem;
+            }
+
+            /* ---------- DOCUMENTATION CONTAINER ---------- */
+            .docs-wrapper {
+                max-width: 1000px;
+                margin: 0 auto;
+                background: #ffffff;
+                border-radius: 24px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
+                padding: 2.5rem 3rem;
+                transition: all 0.2s;
+            }
+
+            @media (max-width: 700px) {
+                .docs-wrapper {
+                    padding: 1.5rem 1.2rem;
+                }
+            }
+
+            /* ---------- HEADER - REDESIGNED ---------- */
+            .docs-header {
+                padding-bottom: 1.8rem;
+                margin-bottom: 2.5rem;
+                border-bottom: 2px solid #eaf0ee;
+            }
+
+            /* Top row: icon + title + badge */
+            .header-top {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+                margin-bottom: 0.8rem;
+            }
+
+            .header-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 54px;
+                height: 54px;
+                background: linear-gradient(135deg, #0a8f6a, #0b6e4f);
+                border-radius: 14px;
+                color: #fff;
+                font-size: 1.6rem;
+                flex-shrink: 0;
+                box-shadow: 0 4px 12px rgba(10, 143, 106, 0.25);
+            }
+
+            .header-title-group {
+                flex: 1;
+                min-width: 180px;
+            }
+
+            .header-title-group h1 {
+                font-size: 2rem;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+                color: #142b2b;
+                line-height: 1.2;
+            }
+
+            .header-title-group h1 span {
+                background: linear-gradient(135deg, #0b6e4f, #0a8f6a);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .header-badge {
+                background: #eaf3ef;
+                color: #0a6b4f;
+                font-size: 0.8rem;
+                font-weight: 600;
+                padding: 0.35rem 1.2rem;
+                border-radius: 40px;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+                margin-left: auto;
+                flex-shrink: 0;
+                border: 1px solid #d3e5de;
+            }
+
+            .header-badge i {
+                font-size: 0.85rem;
+                color: #0a8f6a;
+                -webkit-text-fill-color: #0a8f6a;
+            }
+
+            /* Author bar — clean, pill-style */
+            .author-bar {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.6rem 1.4rem;
+                background: #f6faf9;
+                padding: 0.5rem 1.4rem;
+                border-radius: 60px;
+                margin-top: 0.6rem;
+                border: 1px solid #e4eeea;
+                width: fit-content;
+            }
+
+            .author-bar .author-name {
+                font-weight: 600;
+                color: #0a5e4a;
+                font-size: 0.98rem;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            .author-bar .author-name i {
+                color: #0a8f6a;
+                font-size: 0.9rem;
+            }
+
+            .author-bar .divider {
+                color: #c2d6d0;
+                font-weight: 300;
+                font-size: 1.1rem;
+            }
+
+            .author-bar .slug-badge {
+                background: #e4eeea;
+                padding: 0.15rem 0.9rem;
+                border-radius: 30px;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.8rem;
+                color: #0a5e4a;
+                font-weight: 500;
+            }
+
+            .author-bar .social-links {
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+            }
+
+            .author-bar .social-links a {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+                color: #1e3d3d;
+                font-weight: 500;
+                font-size: 0.9rem;
+                padding: 0.2rem 0.8rem;
+                border-radius: 30px;
+                transition:
+                    background 0.2s,
+                    color 0.2s;
+                text-decoration: none;
+                border: none;
+                background: transparent;
+            }
+
+            .author-bar .social-links a:hover {
+                background: #ddece7;
+                color: #0a5e4a;
+                border: none;
+            }
+
+            .author-bar .social-links a i {
+                font-size: 1rem;
+                color: #0a6b4f;
+            }
+
+            @media (max-width: 700px) {
+                .header-top {
+                    flex-wrap: wrap;
+                }
+                .header-badge {
+                    margin-left: 0;
+                    width: 100%;
+                    justify-content: center;
+                }
+                .author-bar {
+                    width: 100%;
+                    justify-content: center;
+                    border-radius: 30px;
+                    padding: 0.6rem 1.2rem;
+                }
+                .author-bar .divider {
+                    display: none;
+                }
+                .author-bar .social-links a {
+                    padding: 0.2rem 0.5rem;
+                    font-size: 0.8rem;
+                }
+                .header-title-group h1 {
+                    font-size: 1.6rem;
+                }
+            }
+
+            @media (max-width: 500px) {
+                .author-bar {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.3rem;
+                    border-radius: 20px;
+                }
+                .author-bar .social-links {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+            }
+
+            /* ---------- TYPOGRAPHY ---------- */
+            h2 {
+                font-size: 1.7rem;
+                font-weight: 600;
+                margin-top: 2.8rem;
+                margin-bottom: 1rem;
+                color: #1a2b2b;
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+            }
+
+            h2 i {
+                color: #0a8f6a;
+                font-size: 1.4rem;
+                width: 2rem;
+                text-align: center;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-top: 1.8rem;
+                margin-bottom: 0.6rem;
+                color: #1e3a3a;
+            }
+
+            p,
+            li {
+                color: #2c3e3e;
+                font-size: 1.05rem;
+            }
+
+            a {
+                color: #0a8f6a;
+                text-decoration: none;
+                font-weight: 500;
+                border-bottom: 1px dotted transparent;
+                transition: border 0.2s;
+            }
+
+            a:hover {
+                border-bottom-color: #0a8f6a;
+            }
+
+            /* ---------- STEP CARDS ---------- */
+            .step-card {
+                background: #f9fbfc;
+                border-left: 5px solid #0a8f6a;
+                border-radius: 14px;
+                padding: 1.5rem 2rem;
+                margin: 1.8rem 0;
+                transition: background 0.2s;
+            }
+
+            .step-card:hover {
+                background: #f4f8f6;
+            }
+
+            .step-card .step-number {
+                display: inline-block;
+                background: #0a8f6a;
+                color: #fff;
+                font-weight: 700;
+                font-size: 0.8rem;
+                padding: 0.2rem 0.9rem;
+                border-radius: 40px;
+                letter-spacing: 0.5px;
+                margin-bottom: 0.5rem;
+            }
+
+            .step-card p {
+                margin-bottom: 0.4rem;
+            }
+
+            /* ---------- CODE BLOCKS ---------- */
+            .code-block {
+                background: #1e2a2a;
+                color: #e4f0ef;
+                padding: 1.2rem 1.6rem;
+                border-radius: 14px;
+                font-family: "JetBrains Mono", "Fira Code", monospace;
+                font-size: 0.95rem;
+                overflow-x: auto;
+                margin: 0.8rem 0 1.2rem 0;
+                position: relative;
+                white-space: pre-wrap;
+                word-break: break-word;
+                box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .code-block .copy-hint {
+                position: absolute;
+                top: 0.6rem;
+                right: 1rem;
+                color: #8aa8a8;
+                font-size: 0.7rem;
+                font-family: "Segoe UI", sans-serif;
+                background: #2a3a3a;
+                padding: 0.1rem 0.8rem;
+                border-radius: 30px;
+                letter-spacing: 0.3px;
+            }
+
+            .code-block code {
+                color: #c7e0dc;
+            }
+
+            .code-block .comment {
+                color: #6f9a8a;
+            }
+
+            .code-block .keyword {
+                color: #ffcb8a;
+            }
+
+            .code-block .string {
+                color: #b5d9a8;
+            }
+
+            .code-block .func {
+                color: #8fcbff;
+            }
+
+            /* inline code */
+            .inline-code {
+                background: #eef3f2;
+                padding: 0.15rem 0.6rem;
+                border-radius: 6px;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.9rem;
+                color: #0b5e4a;
+            }
+
+            /* ---------- WARNING / INFO BOXES ---------- */
+            .info-box {
+                background: #e7f3f0;
+                border-radius: 14px;
+                padding: 1.2rem 1.8rem;
+                margin: 1.4rem 0;
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                border-left: 5px solid #0a8f6a;
+            }
+
+            .info-box i {
+                color: #0a8f6a;
+                font-size: 1.4rem;
+                margin-top: 0.1rem;
+            }
+
+            .info-box strong {
+                color: #0a5e4a;
+            }
+
+            .tip-box {
+                background: #fef8e7;
+                border-left-color: #e6b422;
+            }
+
+            .tip-box i {
+                color: #c49b1f;
+            }
+
+            /* ---------- TABLE ---------- */
+            .cmd-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 1.5rem 0;
+                font-size: 0.98rem;
+                border-radius: 14px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            }
+
+            .cmd-table th {
+                background: #eaf3ef;
+                color: #0f3d33;
+                font-weight: 600;
+                padding: 0.8rem 1.2rem;
+                text-align: left;
+            }
+
+            .cmd-table td {
+                background: #fafcfb;
+                padding: 0.8rem 1.2rem;
+                border-bottom: 1px solid #e9efec;
+            }
+
+            .cmd-table tr:last-child td {
+                border-bottom: none;
+            }
+
+            .cmd-table td:first-child {
+                font-family: "JetBrains Mono", monospace;
+                font-weight: 500;
+                color: #0a5e4a;
+            }
+
+            /* ---------- FOOTER ---------- */
+            .docs-footer {
+                margin-top: 3.5rem;
+                padding-top: 1.8rem;
+                border-top: 2px solid #eef2f6;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 1rem 2rem;
+                align-items: center;
+            }
+
+            .footer-left {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem 1.2rem;
+                flex-wrap: wrap;
+                color: #3f5e5e;
+                font-size: 0.98rem;
+            }
+
+            .footer-left .author-name {
+                font-weight: 600;
+                color: #0a5e4a;
+            }
+
+            .footer-left i {
+                color: #0a8f6a;
+            }
+
+            .footer-right {
+                display: flex;
+                align-items: center;
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+
+            .footer-right a {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                color: #1e3d3d;
+                font-weight: 500;
+                border-bottom: none;
+                padding: 0.2rem 0.6rem;
+                border-radius: 30px;
+                transition:
+                    background 0.2s,
+                    color 0.2s;
+                background: #f0f6f4;
+                text-decoration: none;
+            }
+
+            .footer-right a:hover {
+                background: #ddece7;
+                color: #0a5e4a;
+                border-bottom: none;
+            }
+
+            .footer-right a i {
+                font-size: 1.1rem;
+                color: #0a6b4f;
+            }
+
+            .footer-slug {
+                background: #eaf3ef;
+                padding: 0.1rem 0.9rem;
+                border-radius: 30px;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.85rem;
+                color: #0a5e4a;
+            }
+
+            @media (max-width: 600px) {
+                .docs-footer {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+                .footer-right {
+                    justify-content: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="docs-wrapper">
+            <!-- ====== HEADER — REDESIGNED ====== -->
+            <header class="docs-header">
+                <!-- Top row: icon, title, badge -->
+                <div class="header-top">
+                    <div class="header-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <div class="header-title-group">
+                        <h1>MinGW <span>&amp; First C Program</span></h1>
+                    </div>
+                    <span class="header-badge">
+                        <i class="fas fa-check-circle"></i> Beginner Friendly
+                    </span>
+                </div>
+
+                <!-- Author bar: clean pill-style -->
+                <div class="author-bar">
+                    <span class="author-name">
+                        <i class="fas fa-user"></i> Seemol Chakroborti
+                    </span>
+                    <span class="divider">|</span>
+                    <span class="slug-badge">wpseemol@gmail.com</span>
+                    <span class="divider">|</span>
+                    <span class="social-links">
+                        <a
+                            href="https://github.com/wpseemol"
+                            target="_blank"
+                            title="GitHub"
+                        >
+                            <i class="fab fa-github"></i> wpseemol
+                        </a>
+                        <a
+                            href="https://facebook.com/wpseemol"
+                            target="_blank"
+                            title="Facebook Page"
+                        >
+                            <i class="fab fa-facebook"></i> wpseemol
+                        </a>
+                    </span>
+                </div>
+            </header>
+
+            <!-- ====== INTRO ====== -->
+            <p style="font-size: 1.15rem; margin-bottom: 1.8rem">
+                <i
+                    class="fas fa-arrow-right"
+                    style="color: #0a8f6a; margin-right: 0.5rem"
+                ></i>
+                This guide walks you through installing
+                <strong>MinGW</strong> (Minimalist GNU for Windows) and
+                compiling your very first C program —
+                <strong>“Hello, World!”</strong> — right from the command line.
+                No prior experience needed!
+            </p>
+
+            <!-- ====== STEP 1 ====== -->
+            <h2><i class="fas fa-download"></i> Step 1 — Download MinGW</h2>
+
+            <div class="step-card">
+                <span class="step-number">STEP 1.1</span>
+                <p>
+                    Go to the official MinGW website:
+                    <a
+                        href="https://sourceforge.net/projects/mingw/"
+                        target="_blank"
+                    >
+                        sourceforge.net/projects/mingw/
+                    </a>
+                    <br />
+                    Click the green <strong>“Download”</strong> button. This
+                    will get you the
+                    <span class="inline-code">mingw-get-setup.exe</span>
+                    installer.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <span class="step-number">STEP 1.2</span>
+                <p>
+                    Run the installer. When asked, choose the installation
+                    directory (the default
+                    <span class="inline-code">C:\MinGW</span> is perfectly
+                    fine).
+                    <br />
+                    <i class="fas fa-info-circle" style="color: #0a8f6a"></i>
+                    <strong>Remember this path</strong> — you'll need it for the
+                    environment variable.
+                </p>
+            </div>
+
+            <!-- ====== STEP 2 ====== -->
+            <h2>
+                <i class="fas fa-tools"></i> Step 2 — Install Essential Packages
+            </h2>
+
+            <div class="step-card">
+                <span class="step-number">STEP 2</span>
+                <p>
+                    After the installer finishes, the
+                    <strong>MinGW Installation Manager</strong>
+                    will open. Do this:
+                </p>
+                <ul style="margin: 0.6rem 0 0 1.8rem; list-style-type: disc">
+                    <li>
+                        Find <strong><code>mingw32-gcc-g++</code></strong> under
+                        <em>Basic Setup</em>.
+                    </li>
+                    <li>
+                        Right-click it and select
+                        <strong>“Mark for Installation”</strong>.
+                    </li>
+                    <li>
+                        Also mark
+                        <strong><code>mingw32-gdb</code></strong> (debugger) —
+                        optional but helpful.
+                    </li>
+                    <li>
+                        Click <strong>“Installation”</strong> in the top menu →
+                        <strong>“Apply Changes”</strong>.
+                    </li>
+                </ul>
+                <p style="margin-top: 0.6rem">
+                    <i class="fas fa-clock" style="color: #0a8f6a"></i> This may
+                    take a few minutes. Wait until it finishes.
+                </p>
+            </div>
+
+            <!-- ====== STEP 3 ====== -->
+            <h2>
+                <i class="fas fa-cogs"></i> Step 3 — Add MinGW to
+                <span class="inline-code">PATH</span>
+            </h2>
+
+            <div class="step-card">
+                <span class="step-number">STEP 3</span>
+                <p>
+                    To use <span class="inline-code">gcc</span> from anywhere in
+                    the command line, you must add MinGW's
+                    <span class="inline-code">bin</span> folder to your system
+                    <strong>PATH</strong> environment variable.
+                </p>
+
+                <h3 style="margin-top: 1rem; font-size: 1rem">
+                    🔹 Windows 10 / 11
+                </h3>
+                <ol style="margin: 0.2rem 0 0 1.8rem; list-style-type: decimal">
+                    <li>
+                        Press <kbd>Win</kbd> + <kbd>R</kbd>, type
+                        <span class="inline-code">sysdm.cpl</span> and hit
+                        Enter.
+                    </li>
+                    <li>
+                        Go to the <strong>Advanced</strong> tab → click
+                        <strong>“Environment Variables…”</strong>.
+                    </li>
+                    <li>
+                        Under <em>System variables</em>, scroll and select
+                        <strong>Path</strong> → click <strong>“Edit…”</strong>.
+                    </li>
+                    <li>
+                        Click <strong>“New”</strong> and paste the path to
+                        MinGW's <span class="inline-code">bin</span> folder,
+                        e.g. <br />
+                        <span class="inline-code">C:\MinGW\bin</span>
+                    </li>
+                    <li>
+                        Click <strong>OK</strong> on all windows and
+                        <strong>restart your terminal</strong> (or your
+                        computer).
+                    </li>
+                </ol>
+
+                <div class="info-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <div>
+                        <strong>Pro tip:</strong> To verify the PATH is set
+                        correctly, open a new Command Prompt and type
+                        <span class="inline-code">gcc --version</span>. You
+                        should see version information — not an error.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== STEP 4 ====== -->
+            <h2>
+                <i class="fas fa-pen-fancy"></i> Step 4 — Write Your First C
+                Code
+            </h2>
+
+            <div class="step-card">
+                <span class="step-number">STEP 4</span>
+                <p>
+                    Open any text editor (Notepad, VS Code, or even Notepad++)
+                    and create a new file. Copy and paste the classic
+                    <strong>“Hello, World!”</strong> program:
+                </p>
+
+                <div class="code-block">
+                    <span class="copy-hint"
+                        ><i class="far fa-copy"></i> copy</span
+                    >
+                    <code>
+                        <span class="comment"
+                            >// hello.c — my first C program</span
+                        >
+                        <br />
+                        <span class="keyword">#include</span>
+                        <span class="string">&lt;stdio.h&gt;</span> <br /><br />
+                        <span class="keyword">int</span>
+                        <span class="func">main</span>() {
+                        <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;printf(<span class="string"
+                            >"Hello, World! \n"</span
+                        >);
+                        <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword"
+                            >return</span
+                        >
+                        <span class="number">0</span>;
+                        <br />
+                        }
+                    </code>
+                </div>
+
+                <p>
+                    Save the file as <span class="inline-code">hello.c</span> in
+                    a folder you can easily find, for example
+                    <span class="inline-code">C:\my_c_projects\</span>.
+                </p>
+            </div>
+
+            <!-- ====== STEP 5 ====== -->
+            <h2>
+                <i class="fas fa-hammer"></i> Step 5 — Compile with MinGW (gcc)
+            </h2>
+
+            <div class="step-card">
+                <span class="step-number">STEP 5</span>
+                <p>
+                    Open <strong>Command Prompt</strong> (or PowerShell) and
+                    navigate to the folder where you saved
+                    <span class="inline-code">hello.c</span>.
+                </p>
+
+                <div class="code-block">
+                    <code> cd C:\my_c_projects </code>
+                </div>
+
+                <p>
+                    Now compile your program using the
+                    <span class="inline-code">gcc</span> command:
+                </p>
+
+                <div class="code-block">
+                    <code> gcc hello.c -o hello.exe </code>
+                </div>
+
+                <p>
+                    <i class="fas fa-check-circle" style="color: #0a8f6a"></i>
+                    This creates an executable file named
+                    <span class="inline-code">hello.exe</span>. If you see any
+                    <strong>error messages</strong>, double-check your code for
+                    typos.
+                </p>
+
+                <div class="info-box tip-box">
+                    <i class="fas fa-gem"></i>
+                    <div>
+                        <strong>Tip:</strong> The
+                        <span class="inline-code">-o</span> flag specifies the
+                        output file name. You can name it anything, e.g.
+                        <span class="inline-code">-o myapp.exe</span>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== STEP 6 ====== -->
+            <h2><i class="fas fa-play"></i> Step 6 — Run Your Program</h2>
+
+            <div class="step-card">
+                <span class="step-number">STEP 6</span>
+                <p>
+                    In the same terminal, type the name of your executable and
+                    press Enter:
+                </p>
+
+                <div class="code-block">
+                    <code> hello.exe </code>
+                </div>
+
+                <p>You should see the glorious output:</p>
+
+                <div
+                    class="code-block"
+                    style="background: #1a2a2a; color: #b5e6d6"
+                >
+                    <code> Hello, World! </code>
+                </div>
+
+                <p>
+                    <i class="fas fa-rocket" style="color: #0a8f6a"></i>
+                    <strong>Congratulations!</strong> You've just compiled and
+                    run your first C program using MinGW. 🎉
+                </p>
+            </div>
+
+            <!-- ====== COMMAND QUICK REFERENCE ====== -->
+            <h2><i class="fas fa-list-ul"></i> Quick Command Reference</h2>
+
+            <table class="cmd-table">
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>What it does</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>gcc --version</td>
+                        <td>Check if MinGW is installed and in PATH</td>
+                    </tr>
+                    <tr>
+                        <td>gcc hello.c -o hello.exe</td>
+                        <td>
+                            Compile
+                            <span class="inline-code">hello.c</span> into
+                            <span class="inline-code">hello.exe</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>hello.exe</td>
+                        <td>Run the compiled program</td>
+                    </tr>
+                    <tr>
+                        <td>gcc -Wall hello.c -o hello.exe</td>
+                        <td>
+                            Compile with all warnings enabled (good practice)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ====== TROUBLESHOOTING ====== -->
+            <h2>
+                <i class="fas fa-exclamation-triangle"></i> Common Issues &amp;
+                Fixes
+            </h2>
+
+            <div class="info-box" style="margin-top: 1rem">
+                <i class="fas fa-times-circle" style="color: #c0392b"></i>
+                <div>
+                    <strong
+                        >“gcc is not recognized as an internal command”</strong
+                    >
+                    — This means the PATH was not set correctly. Go back to
+                    <strong>Step 3</strong> and ensure you added
+                    <span class="inline-code">C:\MinGW\bin</span> (or your
+                    custom path) to the <strong>System variables</strong> Path,
+                    then restart your terminal.
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 0.8rem">
+                <i class="fas fa-times-circle" style="color: #c0392b"></i>
+                <div>
+                    <strong>“stdio.h: No such file or directory”</strong> — You
+                    may have missed installing the
+                    <span class="inline-code">gcc</span> package in the MinGW
+                    Installation Manager. Re-open the manager and make sure
+                    <strong>mingw32-gcc-g++</strong> is marked and installed.
+                </div>
+            </div>
+
+            <div class="info-box tip-box" style="margin-top: 0.8rem">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <strong>Antivirus / firewall warning:</strong> Some
+                    antivirus software may flag MinGW or your compiled
+                    <span class="inline-code">.exe</span> files. This is a
+                    <em>false positive</em> — you can safely add an exception.
+                </div>
+            </div>
+
+            <!-- ====== NEXT STEPS ====== -->
+            <h2><i class="fas fa-arrow-right"></i> What’s Next?</h2>
+
+            <div
+                style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1.2rem;
+                    margin: 1.2rem 0 1.8rem 0;
+                "
+            >
+                <div
+                    style="
+                        background: #f3f8f6;
+                        border-radius: 16px;
+                        padding: 1rem 1.8rem;
+                        flex: 1 1 200px;
+                    "
+                >
+                    <i
+                        class="fas fa-book"
+                        style="color: #0a8f6a; font-size: 1.4rem"
+                    ></i>
+                    <p style="margin-top: 0.3rem; font-weight: 500">
+                        Learn C syntax
+                    </p>
+                    <small style="color: #4d6b6b"
+                        >Variables, loops, functions</small
+                    >
+                </div>
+                <div
+                    style="
+                        background: #f3f8f6;
+                        border-radius: 16px;
+                        padding: 1rem 1.8rem;
+                        flex: 1 1 200px;
+                    "
+                >
+                    <i
+                        class="fas fa-bug"
+                        style="color: #0a8f6a; font-size: 1.4rem"
+                    ></i>
+                    <p style="margin-top: 0.3rem; font-weight: 500">
+                        Try debugging
+                    </p>
+                    <small style="color: #4d6b6b"
+                        >Use <span class="inline-code">gdb</span> to step
+                        through code</small
+                    >
+                </div>
+                <div
+                    style="
+                        background: #f3f8f6;
+                        border-radius: 16px;
+                        padding: 1rem 1.8rem;
+                        flex: 1 1 200px;
+                    "
+                >
+                    <i
+                        class="fas fa-project-diagram"
+                        style="color: #0a8f6a; font-size: 1.4rem"
+                    ></i>
+                    <p style="margin-top: 0.3rem; font-weight: 500">
+                        Multi-file projects
+                    </p>
+                    <small style="color: #4d6b6b"
+                        >Compile with
+                        <span class="inline-code">gcc *.c -o app</span></small
+                    >
+                </div>
+            </div>
+
+            <!-- ====== FOOTER ====== -->
+            <footer class="docs-footer">
+                <div class="footer-left">
+                    <span
+                        ><i class="fas fa-code" style="color: #0a8f6a"></i>
+                        MinGW Guide</span
+                    >
+                    <span style="color: #b0c8c4">·</span>
+                    <span
+                        ><i class="fas fa-user-edit"></i>
+                        <span class="author-name"
+                            >Seemol Chakroborti</span
+                        ></span
+                    >
+                    <span class="footer-slug">wpseemol</span>
+                </div>
+                <div class="footer-right">
+                    <a
+                        href="https://github.com/wpseemol"
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        <i class="fab fa-github"></i> wpseemol
+                    </a>
+                    <a
+                        href="https://facebook.com/wpseemol"
+                        target="_blank"
+                        title="Facebook Page"
+                    >
+                        <i class="fab fa-facebook"></i> wpseemol
+                    </a>
+                    <span style="color: #b0c8c4; font-size: 0.8rem">
+                        <i class="fas fa-heart" style="color: #e74c3c"></i>
+                    </span>
+                </div>
+            </footer>
+        </div>
+        <!-- end docs-wrapper -->
+    </body>
+</html>
