@@ -4,7 +4,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
-    const filePath = path.join(__dirname, "index.html");
+    const filePath = path.join(__dirname, "./index.html");
     fs.readFile(filePath, "utf8", (err, data) => {
         if (err) {
             res.statusCode = 500;
