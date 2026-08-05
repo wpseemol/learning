@@ -1,16 +1,11 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON requests
-app.use(express.json());
+const welcomeRoutes = require("./routers/welcome.routers");
 
-const userRoutes = require("./routes/user");
+app.use("/", welcomeRoutes);
 
-// Use the user routes for any requests to /users
-app.use("/api/users", userRoutes);
-
-// web server listening on port 3000
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
